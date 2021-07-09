@@ -1,4 +1,4 @@
-﻿//using jbzdy.Items;
+﻿using SDS.Items;
 using UnityEngine;
 using UnityEngine.UIElements;
 using System.Collections.Generic;
@@ -89,7 +89,7 @@ namespace SDS.DialogueSystem.SO
     {
         public ItemCheckNodeType ItemCheckType;
         public int ItemCheckValue;
-        //public Item NodeItem;
+        public Item NodeItem;
     }
 
     [System.Serializable]

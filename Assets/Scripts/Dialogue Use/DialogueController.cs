@@ -1,55 +1,52 @@
 ﻿using TMPro;
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
-//using SDS.CharacterStats;
+using SDS.CharacterStats;
 using SDS.DialogueSystem.SO;
 using SDS.DialogueSystem.Enums;
 using System.Collections.Generic;
-//using SDS.Inventory;
 
-// <summary>
-// Napisane przez sharashino
-// 
-// Controller odpowiadający za wyświetlanie okna z dialogiem
-// </summary>
+// Controller responsible for showing the dialogue box and filling dialogue choices
 namespace SDS.DialogueSystem.Actions
 {
     public class DialogueController : MonoBehaviour
     {
-        public static DialogueController Instance { get; private set; }
+        public static DialogueController Instance { get; private set; } // Making a singleton out of this class
 
-       // [SerializeField] private PlayerStats playerStats = default;
-        [SerializeField] private GameObject dialogueUI = default;
+        [SerializeField] private PlayerStats playerStats = default;
+        [SerializeField] private GameObject dialogueUI = default;   // Our Dialogue UI 
 
         [Header("NPC Texts")]
-        [SerializeField] private TMP_Text NPCName = default;
-        [SerializeField] private TMP_Text NPCAnswer = default;
+        [SerializeField] private TMP_Text NPCName = default;    // NPC name text
+        [SerializeField] private TMP_Text NPCAnswer = default;  // NPC dialogue text
 
         [Header("Talkers Images")]
-        [SerializeField] private Image playerFaceImage = default;
-        [SerializeField] private GameObject playerImageGO = default;
-        [SerializeField] private Image NPCFaceImage = default;
-        [SerializeField] private GameObject NPCImageGO = default;
+        [SerializeField] private Image playerFaceImage = default;   // Player image
+        [SerializeField] private GameObject playerImageGO = default;    // Player image object
+        [SerializeField] private Image NPCFaceImage = default;  // NPC image
+        [SerializeField] private GameObject NPCImageGO = default;   // Npc object image
 
         [Header("Answer Buttons")]
-        [SerializeField] private Button answerButton1 = default;
-        [SerializeField] private TMP_Text answerButtonText1 = default;
+        [SerializeField] private Button answerButton1 = default;    // Dialogue option 1 button 
+        [SerializeField] private TMP_Text answerButtonText1 = default;  // Dialogue option 1 button text 
         [Space]
-        [SerializeField] private Button answerButton2 = default;
-        [SerializeField] private TMP_Text answerButtonText2 = default;
+        [SerializeField] private Button answerButton2 = default;    // Dialogue option 2 button
+        [SerializeField] private TMP_Text answerButtonText2 = default; // Dialogue option 2 button text
         [Space]
-        [SerializeField] private Button answerButton3 = default;
-        [SerializeField] private TMP_Text answerButtonText3 = default;
+        [SerializeField] private Button answerButton3 = default;    // Dialogue option 3 button
+        [SerializeField] private TMP_Text answerButtonText3 = default;  // Dialogue option 3 button text 
         [Space]
-        [SerializeField] private Button answerButton4 = default;
-        [SerializeField] private TMP_Text answerButtonText4 = default;
+        [SerializeField] private Button answerButton4 = default;    // Dialogue option 4 button
+        [SerializeField] private TMP_Text answerButtonText4 = default;  // Dialogue option 4 button text 
 
-        public List<Button> answerButtons = new List<Button>();
-        public List<TMP_Text> answerButtonsTexts = new List<TMP_Text>();
-        private int itemCheckNodeCount = 0;
+        public List<Button> answerButtons = new List<Button>(); // List of buttons which is dialogue answers
+        public List<TMP_Text> answerButtonsTexts = new List<TMP_Text>();    // List of texts to these buttons
+        
+        // Check nodes present in the passed dialogue 
+        private int itemCheckNodeCount = 0; 
         private int statCheckNodeCount = 0;
-      //  public InventoryClass inventoryClass;
         
         private void Awake()
         {
@@ -58,22 +55,24 @@ namespace SDS.DialogueSystem.Actions
                 Instance = this;
             }
             
-            //inventoryClass = InventoryClass.Instance;
-            AddButtonsToList();
-            ShowDialogueUI(false);
+            AddButtonsToList(); 
+            ShowDialogueUI(false);  // Hiding the UI on awake
         }
 
-        public void ShowDialogueUI(bool show)
+        // Showing/Hiding dialogue UI
+        public void ShowDialogueUI(bool show)   
         {
             dialogueUI.SetActive(show);
         }
 
-        public void SetText(string newName, string newTextBox)
+        // Setting NPCs dialogue and name texts 
+        public void SetText(string newName, string newTextBox)  
         {
             NPCName.text = newName;
             NPCAnswer.text = newTextBox;
         }
 
+        // Setting player and npc images
         public void SetImage(Sprite playerImage, Sprite npcImage)
         {
             playerImageGO.SetActive(true);
@@ -82,108 +81,106 @@ namespace SDS.DialogueSystem.Actions
             NPCFaceImage.sprite = npcImage;
         }
 
-        //Setting up buttons to show them in dialogue options
+        // Filling up buttons to show them in dialogue options
         public void SetButtons(List<string> texts, List<UnityAction> unityActions, List<StatCheckNodeData> statCheckNodeDatas, List<ItemCheckNodeData> itemCheckNodeDatas)
         {
             answerButtons.ForEach(button => button.gameObject.SetActive(false));
-            UnityAction statCheck = null;
-            UnityAction getItemCheck = null;
-            UnityAction giveItemCheck = null;
+            UnityAction failStatCheck = null;   
+            UnityAction failGetItemCheck = null;
+            UnityAction failGiveItemCheck = null;
 
-            statCheck = () =>
+            // If you won't pass checks these messages will show up
+            failStatCheck = () =>
             {
-                Debug.Log("Twoje statystyki są zbyt słabe, podszlifuj swoje umiejętności...");
+                Debug.Log("You're too weak, improve your skills...");
             };
 
-            getItemCheck = () =>
+            failGetItemCheck = () =>
             {
-                Debug.Log("Nie możesz dostać tego itemu, wyrzucam go na podłoge!");
+                Debug.Log("You can't get this item! Throwing it on the floor");
             };
             
-            giveItemCheck = () =>
+            failGiveItemCheck = () =>
             {
-                Debug.Log("Nie możesz oddać przedmiotów, bo ich nie posiadasz!");
+                Debug.Log("You cannot return items because you don't have them!");
             };
             
+            // If item check nodes are present in this dialogue
             if (itemCheckNodeDatas.Count > 0)
             {
                 for (int i = 0; i < itemCheckNodeDatas.Count; i++)
                 {
-                    int itemToCheckIndex = itemCheckNodeDatas.IndexOf(itemCheckNodeDatas[i]); 
+                    int itemToCheckIndex = itemCheckNodeDatas.IndexOf(itemCheckNodeDatas[i]);   // Getting index of item check to validate it properly 
                     
-                    /*
+                    // Based on Item Check Type we're displaying different text in dialogue choice
                     switch (itemCheckNodeDatas[i].ItemCheckType)
                     {
+                        // If item check quantity is less than 2 we're not showing the quantity in dialogue option
                         case ItemCheckNodeType.GetItem when itemCheckNodeDatas[i].ItemCheckValue > 1:
-                            answerButtonsTexts[i].text = "[Otrzymaj " + itemCheckNodeDatas[i].ItemCheckValue + " " + itemCheckNodeDatas[i].NodeItem.itemName + "] " + texts[i];
+                            answerButtonsTexts[i].text = "[Receive " + itemCheckNodeDatas[i].ItemCheckValue + " " + itemCheckNodeDatas[i].NodeItem.itemName + "] " + texts[i];
                             break;
                         case ItemCheckNodeType.GetItem:
-                            answerButtonsTexts[i].text = "[Otrzymaj " + itemCheckNodeDatas[i].NodeItem.itemName + "] " + texts[i];
+                            answerButtonsTexts[i].text = "[Receive " + itemCheckNodeDatas[i].NodeItem.itemName + "] " + texts[i];
                             break;
                         case ItemCheckNodeType.GiveItem when itemCheckNodeDatas[i].ItemCheckValue > 1:
-                            answerButtonsTexts[i].text = "[Oddaj " + itemCheckNodeDatas[i].ItemCheckValue + " " + itemCheckNodeDatas[i].NodeItem.itemName + "] " + texts[i];
+                            answerButtonsTexts[i].text = "[Return " + itemCheckNodeDatas[i].ItemCheckValue + " " + itemCheckNodeDatas[i].NodeItem.itemName + "] " + texts[i];
                             break;
                         case ItemCheckNodeType.GiveItem:
-                            answerButtonsTexts[i].text = "[Oddaj " + itemCheckNodeDatas[i].NodeItem.itemName + "] " + texts[i];
+                            answerButtonsTexts[i].text = "[Return " + itemCheckNodeDatas[i].NodeItem.itemName + "] " + texts[i];
                             break;
                     }
-                    */
                     
-                    answerButtons[i].gameObject.SetActive(true);
-                    answerButtons[i].onClick = new Button.ButtonClickedEvent();
+                    answerButtons[i].gameObject.SetActive(true);    // Showing the dialogue choice we just configured
+                    answerButtons[i].onClick = new Button.ButtonClickedEvent(); // Adding new event to dialogue choice
                     
                     if (itemCheckNodeDatas[i].ItemCheckType == ItemCheckNodeType.GetItem)
                     {
-                        /*
-                        if(inventoryClass.CheckFreeSpaceForAllSlots(itemCheckNodeDatas[i].NodeItem.itemWidth, itemCheckNodeDatas[i].NodeItem.itemHeight))
+                        // If player passes get item check validation
+                        if(ValidateItemCheck(itemCheckNodeDatas[i]))
                         {
-                            answerButtons[i].onClick.AddListener(delegate { ValidateItemCheck(itemCheckNodeDatas[itemToCheckIndex]); });
-                            answerButtons[i].onClick.AddListener(unityActions[i]);
+                            answerButtons[i].onClick.AddListener(unityActions[i]);  // Player passes get item check, gets to the next dialogue sequence
                         }
                         else
                         {
-                            answerButtons[i].onClick.AddListener(getItemCheck);
-                            answerButtons[i].onClick.AddListener(unityActions[i]);
+                            answerButtons[i].onClick.AddListener(failGetItemCheck); // Player fails give item check, gets to the next dialogue sequence, item is dropped on the floor
+                            answerButtons[i].onClick.AddListener(unityActions[i]);  // Gets to the next dialogue
                         }
-                        */
+                        
                     }
                     else if(itemCheckNodeDatas[i].ItemCheckType == ItemCheckNodeType.GiveItem)
                     {
-                        /*
-                        if (inventoryClass.CheckForItem(itemCheckNodeDatas[i].NodeItem, itemCheckNodeDatas[i].ItemCheckValue, false))
+                        // If player passes give item check validation
+                        if (ValidateItemCheck(itemCheckNodeDatas[i]))
                         {
-                            answerButtons[i].onClick.AddListener(delegate { ValidateItemCheck(itemCheckNodeDatas[itemToCheckIndex]); });
-                            answerButtons[i].onClick.AddListener(unityActions[i]);
+                            answerButtons[i].onClick.AddListener(unityActions[i]);  // Player passes give item check, gets to the next dialogue sequence
                         }
                         else
                         {
-                            answerButtons[i].onClick.AddListener(giveItemCheck);
+                            answerButtons[i].onClick.AddListener(failGiveItemCheck);    // Player fails item check, cant get further
                         }
-                        */
                     }
                 }
                 
-                itemCheckNodeCount = itemCheckNodeDatas.Count;
+                itemCheckNodeCount = itemCheckNodeDatas.Count;  // How many Item Check Nodes are in this dialogue
             }
             
+            // If stat check nodes are present in this dialogue 
             if (statCheckNodeDatas.Count > 0)
             {
-                /*
                 for (int i = 0; i < statCheckNodeDatas.Count; i++)
                 {
-                    
-                    int playerValue = AddStatCheckPlayerValues(statCheckNodeDatas[i]);
+                    int playerStatValue = AddStatCheckPlayerValues(statCheckNodeDatas[i]);  // Adding right player value to the Stat Check we're processing 
 
-                    answerButtonsTexts[i + itemCheckNodeCount].text = "[" + statCheckNodeDatas[i].StatCheckType + " " + playerValue + "/" + statCheckNodeDatas[i].StatCheckValue + "] " + texts[i + itemCheckNodeCount];
+                    answerButtonsTexts[i + itemCheckNodeCount].text = "[" + statCheckNodeDatas[i].StatCheckType + " " + playerStatValue + "/" + statCheckNodeDatas[i].StatCheckValue + "] " + texts[i + itemCheckNodeCount];
                     answerButtons[i + itemCheckNodeCount].gameObject.SetActive(true);
                     answerButtons[i + itemCheckNodeCount].onClick = new Button.ButtonClickedEvent();
-                    answerButtons[i + itemCheckNodeCount].onClick.AddListener(ValidateStatCheck(statCheckNodeDatas[i]) ? unityActions[i] : statCheck);
+                    answerButtons[i + itemCheckNodeCount].onClick.AddListener(ValidateStatCheck(statCheckNodeDatas[i]) ? unityActions[i] : failStatCheck);
                 }
-                */
 
-                statCheckNodeCount = statCheckNodeDatas.Count;
+                statCheckNodeCount = statCheckNodeDatas.Count;  // How many Stat Check Nodes are in this dialogue
             }   
             
+            // Processing left dialogue choices
             for (int i = statCheckNodeCount + itemCheckNodeCount; i < texts.Count; i++)
             {
                 answerButtonsTexts[i].text = texts[i];
@@ -192,47 +189,61 @@ namespace SDS.DialogueSystem.Actions
                 answerButtons[i].onClick.AddListener(unityActions[i]);
             }
 
-            statCheckNodeCount = 0;
+            // Resetting both counters after processing check nodes
+            statCheckNodeCount = 0; 
             itemCheckNodeCount = 0;
         }
 
+        // Validating if player can get or receive item
         public bool ValidateItemCheck(ItemCheckNodeData itemCheckNodeData)
         {
-            /*
             switch (itemCheckNodeData.ItemCheckType)
             {
+                // You will always pass GetItem check since NPC can drop the item on the floor if you dont have space in your inventory 
                 case ItemCheckNodeType.GetItem:
                 {
+                    /*
+                    *  Here you should place code that is checking players inventory space to fit specific item
+                    *  itemCheckNodeData.NodeItem - Item we're checking
+                    *  itemCheckNodeData.NodeItem. - Quantity of item we're checking
+                    *  itemCheckNodeData.NodeItem.itemWidth - Item Width we're checking
+                    *  itemCheckNodeData.NodeItem.itemWidth - Item Height we're checking
+                    *
+                    *  This bool returns true now to make Get Item Check work
+                    */
+                    
                     if (itemCheckNodeData.ItemCheckValue > 1)
-                        Debug.Log("Otrzymałeś - " + itemCheckNodeData.ItemCheckValue + " " + itemCheckNodeData.NodeItem);
+                        Debug.Log("You received - " + itemCheckNodeData.ItemCheckValue + " " + itemCheckNodeData.NodeItem);
                     else
-                        Debug.Log("Otrzymałeś - " + itemCheckNodeData.NodeItem);
+                        Debug.Log("You received  - " + itemCheckNodeData.NodeItem);
                     
                     return true;
                 }
                 case ItemCheckNodeType.GiveItem:
                 {
-                    //inventoryClass.CheckForItem(itemCheckNodeData.NodeItem, itemCheckNodeData.ItemCheckValue, true);
+                    /*
+                     *  Here you should place code that is checking players inventory for specific item
+                     *  itemCheckNodeData.NodeItem - Item we're checking
+                     *  itemCheckNodeData.ItemCheckValue - Quantity of item we're checking
+                     *
+                     *  This bool returns true now to make Give Item Check work
+                     */
                     
                     if (itemCheckNodeData.ItemCheckValue > 1)
-                        Debug.Log("Oddałeś - " + itemCheckNodeData.ItemCheckValue + " " + itemCheckNodeData.NodeItem);
+                        Debug.Log("You returned - " + itemCheckNodeData.ItemCheckValue + " " + itemCheckNodeData.NodeItem);
                     else
-                        Debug.Log("Oddałeś - " + itemCheckNodeData.NodeItem);
+                        Debug.Log("You returned - " + itemCheckNodeData.NodeItem);
                     
                     return true;
                 }
                 default:
-                    break;
+                    return false;
             }
-            */
-            
-            return false;
         }
 
-        /*
+        // Validating if player can pass Stat Check
         private bool ValidateStatCheck(StatCheckNodeData statCheckNodeData)
         {
-            
             switch (statCheckNodeData.StatCheckType)
             {
                 case StatCheckType.Exp:
@@ -247,7 +258,7 @@ namespace SDS.DialogueSystem.Actions
                     return statCheckNodeData.StatCheckValue < playerStats.Armor.BaseValue;
                 case StatCheckType.Damage:
                     return statCheckNodeData.StatCheckValue < playerStats.Damage.BaseValue;
-                case StatCheckType.Strenght:
+                case StatCheckType.Strength:
                     return statCheckNodeData.StatCheckValue < playerStats.Strength.BaseValue;
                 case StatCheckType.Agility:
                     return statCheckNodeData.StatCheckValue < playerStats.Agility.BaseValue;
@@ -258,12 +269,11 @@ namespace SDS.DialogueSystem.Actions
                 case StatCheckType.Luck:
                     return statCheckNodeData.StatCheckValue < playerStats.Luck.BaseValue;
                 default:
-                    return false;
+                    throw new IndexOutOfRangeException();
             }
         }
-        */
         
-        /*
+        // Returning players value of stat we're checking
         private int AddStatCheckPlayerValues(StatCheckNodeData statCheckNodeData)
         {
             switch (statCheckNodeData.StatCheckType)
@@ -280,7 +290,7 @@ namespace SDS.DialogueSystem.Actions
                     return playerStats.Armor.BaseValue;
                 case StatCheckType.Damage:
                     return playerStats.Damage.BaseValue;
-                case StatCheckType.Strenght:
+                case StatCheckType.Strength:
                     return playerStats.Strength.BaseValue;
                 case StatCheckType.Agility:
                     return playerStats.Agility.BaseValue;
@@ -291,11 +301,11 @@ namespace SDS.DialogueSystem.Actions
                 case StatCheckType.Luck:
                     return playerStats.Luck.BaseValue;
                 default:
-                    return playerStats.Luck.BaseValue;
+                    throw new IndexOutOfRangeException();
             }
         }
-        */
         
+        // Adding dialogue choices buttons to list
         private void AddButtonsToList()
         {
             answerButtons.Add(answerButton1);

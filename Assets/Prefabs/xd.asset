@@ -1,0 +1,107 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99a69ff5ed214494b835d86b8438ac53, type: 3}
+  m_Name: xd
+  m_EditorClassIdentifier: 
+  NodeLinkDatas:
+  - BaseNodeGuid: 06ea48d1-2997-4fa8-bd80-fad4f013a9cc
+    TargetNodeGuid: 81e3a5fc-fdd1-4661-a8be-fcef0ff2c419
+  - BaseNodeGuid: 81e3a5fc-fdd1-4661-a8be-fcef0ff2c419
+    TargetNodeGuid: 4c96a6eb-7f47-4427-a09e-b5114e4fc5c0
+  - BaseNodeGuid: 81e3a5fc-fdd1-4661-a8be-fcef0ff2c419
+    TargetNodeGuid: 39defc95-84de-4f87-82bf-61386a532775
+  - BaseNodeGuid: 39defc95-84de-4f87-82bf-61386a532775
+    TargetNodeGuid: 8fe94ce7-2de6-49c3-9930-84e3884b592c
+  DialogueNodeDatas:
+  - NodeGuid: 39defc95-84de-4f87-82bf-61386a532775
+    Position: {x: 525, y: 187}
+    DialogueNodePorts:
+    - PortGuid: 2bb57680-fa42-4377-9aa8-8c13f6569c6b
+      InputGuid: 8fe94ce7-2de6-49c3-9930-84e3884b592c
+      OutputGuid: 39defc95-84de-4f87-82bf-61386a532775
+      TextLanguages:
+      - LanguageType: 0
+        LanguageGenericType: Continue
+      - LanguageType: 1
+        LanguageGenericType: Continue
+      - LanguageType: 2
+        LanguageGenericType: Continue
+    AudioClips:
+    - LanguageType: 0
+      LanguageGenericType: {fileID: 0}
+    - LanguageType: 1
+      LanguageGenericType: {fileID: 0}
+    - LanguageType: 2
+      LanguageGenericType: {fileID: 0}
+    TextLanguages:
+    - LanguageType: 0
+      LanguageGenericType: 
+    - LanguageType: 1
+      LanguageGenericType: 
+    - LanguageType: 2
+      LanguageGenericType: 
+    npcSprite: {fileID: 0}
+    playerSprite: {fileID: 0}
+    Name: 
+  - NodeGuid: 81e3a5fc-fdd1-4661-a8be-fcef0ff2c419
+    Position: {x: 193, y: 129}
+    DialogueNodePorts:
+    - PortGuid: f9c97cb2-9f47-40aa-9cff-720fdd7df871
+      InputGuid: 4c96a6eb-7f47-4427-a09e-b5114e4fc5c0
+      OutputGuid: 81e3a5fc-fdd1-4661-a8be-fcef0ff2c419
+      TextLanguages:
+      - LanguageType: 0
+        LanguageGenericType: Continue
+      - LanguageType: 1
+        LanguageGenericType: Continue
+      - LanguageType: 2
+        LanguageGenericType: Continue
+    - PortGuid: 84ecaefb-e89b-45df-9c1c-6ad6c69fb45b
+      InputGuid: 39defc95-84de-4f87-82bf-61386a532775
+      OutputGuid: 81e3a5fc-fdd1-4661-a8be-fcef0ff2c419
+      TextLanguages:
+      - LanguageType: 0
+        LanguageGenericType: xdadssdasd
+      - LanguageType: 1
+        LanguageGenericType: Continue
+      - LanguageType: 2
+        LanguageGenericType: Continue
+    AudioClips:
+    - LanguageType: 0
+      LanguageGenericType: {fileID: 0}
+    - LanguageType: 1
+      LanguageGenericType: {fileID: 0}
+    - LanguageType: 2
+      LanguageGenericType: {fileID: 0}
+    TextLanguages:
+    - LanguageType: 0
+      LanguageGenericType: 
+    - LanguageType: 1
+      LanguageGenericType: 
+    - LanguageType: 2
+      LanguageGenericType: 
+    npcSprite: {fileID: 0}
+    playerSprite: {fileID: 0}
+    Name: 
+  EndNodeDatas:
+  - NodeGuid: 4c96a6eb-7f47-4427-a09e-b5114e4fc5c0
+    Position: {x: 571, y: 96}
+    EndNodeType: 0
+  - NodeGuid: 8fe94ce7-2de6-49c3-9930-84e3884b592c
+    Position: {x: 833, y: 280}
+    EndNodeType: 0
+  StartNodeDatas:
+  - NodeGuid: 06ea48d1-2997-4fa8-bd80-fad4f013a9cc
+    Position: {x: 98, y: 107}
+  EventNodeDatas: []
+  StatCheckNodeDatas: []
+  ItemCheckNodeDatas: []

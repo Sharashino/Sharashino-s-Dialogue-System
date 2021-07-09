@@ -1,6 +1,6 @@
 ﻿using System;
 using UnityEngine;
-//using SDS.Items;
+using SDS.Items;
 using UnityEditor.UIElements;
 using UnityEngine.UIElements;
 using SDS.DialogueSystem.Enums;
@@ -11,7 +11,7 @@ namespace SDS.DialogueSystem.Nodes
 {
     public class ItemCheckNode : BaseNode
     {
-        //private Item nodeItem;
+        private Item nodeItem;
         private ItemCheckNodeType itemCheckType;
         private string itemCheckValue;
 
@@ -19,7 +19,7 @@ namespace SDS.DialogueSystem.Nodes
         private ObjectField itemField;
         private TextField itemCheckValueField;
 
-        //public Item NodeItem { get => nodeItem; set => nodeItem = value; }
+        public Item NodeItem { get => nodeItem; set => nodeItem = value; }
         public string ItemCheckValue { get => itemCheckValue; set => itemCheckValue = value; }
         public ItemCheckNodeType ItemCheckNodeType { get => itemCheckType; set => itemCheckType = value; }
 
@@ -70,7 +70,7 @@ namespace SDS.DialogueSystem.Nodes
             itemCheckValueField.SetValueWithoutNotify(itemCheckValue);
             mainContainer.Add(itemCheckValueField);
             
-            /*
+            
             itemField = new ObjectField()
             {
                 objectType = typeof(Item),
@@ -85,7 +85,7 @@ namespace SDS.DialogueSystem.Nodes
             });
 
             itemField.SetValueWithoutNotify(nodeItem);
-            */
+            
             mainContainer.Add(itemField);
         }
 
@@ -93,7 +93,7 @@ namespace SDS.DialogueSystem.Nodes
         {
             itemCheckValueField.SetValueWithoutNotify(itemCheckValue);
             itemCheckField.SetValueWithoutNotify(itemCheckType);
-            //itemField.SetValueWithoutNotify(nodeItem);
+            itemField.SetValueWithoutNotify(nodeItem);
         }
     }
 }

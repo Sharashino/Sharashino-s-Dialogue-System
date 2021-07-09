@@ -281,8 +281,8 @@ namespace SDS.DialogueSystem.SaveLoad
                 ItemCheckNode tempNode = graphView.CreateItemCheckNode(node.Position);
                 tempNode.NodeGuid = node.NodeGuid;
                 tempNode.ItemCheckValue = node.ItemCheckValue.ToString();
-                tempNode.ItemCheckNodeType = node.ItemCheckType;
-                //tempNode.NodeItem = node.NodeItem;
+                tempNode.ItemCheckNodeType = node.ItemCheckType; 
+                tempNode.NodeItem = node.NodeItem;
 
                 tempNode.LoadValueInToField();
                 graphView.AddElement(tempNode);
