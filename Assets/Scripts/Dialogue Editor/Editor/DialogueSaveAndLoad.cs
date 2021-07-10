@@ -8,29 +8,33 @@ using SDS.DialogueSystem.Nodes;
 using SDS.DialogueSystem.Editor;
 using UnityEditor.Experimental.GraphView;
 
+// Script that saves dialogue into ScriptableObject
 namespace SDS.DialogueSystem.SaveLoad
 {
     public class DialogueSaveAndLoad
     {
-        private List<Edge> edges => graphView.edges.ToList();
-        private List<BaseNode> nodes => graphView.nodes.ToList().Where(node => node is BaseNode).Cast<BaseNode>().ToList();
+        private List<Edge> edges => graphView.edges.ToList();   // List of every nodes edges
+        private List<BaseNode> nodes => graphView.nodes.ToList().Where(node => node is BaseNode).Cast<BaseNode>().ToList(); // List of every nodes in dialogue, casting every node to BaseNode
 
-        private DialogueGraphView graphView;
+        private DialogueGraphView graphView;    // Graph view of our dialogue
 
+        // Constructor spawning graph view
         public DialogueSaveAndLoad(DialogueGraphView newGraphView)
         {
             graphView = newGraphView;
         }
 
+        // Saving our dialgoue
         public void Save(DialogueContainerSO dialogueContainerSO)
         {
-            SaveEdges(dialogueContainerSO);
+            SaveEdges(dialogueContainerSO); 
             SaveNodes(dialogueContainerSO);
 
-            EditorUtility.SetDirty(dialogueContainerSO);
+            EditorUtility.SetDirty(dialogueContainerSO);    // Setting editor dirty to accept our changes
             AssetDatabase.SaveAssets();
         }
-
+        
+        // Loading dialogue
         public void Load(DialogueContainerSO dialogueContainerSO)
         {
             ClearGraph();
@@ -39,16 +43,21 @@ namespace SDS.DialogueSystem.SaveLoad
         }
 
         #region Save
+        
+        // Saving nodes edges 
         private void SaveEdges(DialogueContainerSO dialogueContainerSO)
         {
+            // Clearing all links before saving new ones
             dialogueContainerSO.NodeLinkDatas.Clear();
-            Edge[] connectedEdges = edges.Where(edge => edge.input.node != null).ToArray();
+            
+            Edge[] connectedEdges = edges.Where(edge => edge.input.node != null).ToArray(); // Connecting edges by finding matching ones
             
             for (int i = 0; i < connectedEdges.Count(); i++)
             {
                 BaseNode outputNode = (BaseNode)connectedEdges[i].output.node;
                 BaseNode inputNode = connectedEdges[i].input.node as BaseNode;
-
+                
+                // Adding edges to list
                 dialogueContainerSO.NodeLinkDatas.Add(new NodeLinkData
                 {
                     BaseNodeGuid = outputNode.NodeGuid,
@@ -56,16 +65,19 @@ namespace SDS.DialogueSystem.SaveLoad
                 });
             }
         }
-
+        
+        // Saving all nodes
         private void SaveNodes(DialogueContainerSO dialogueContainerSO)
         {
+            // Clearing all data before saving
             dialogueContainerSO.DialogueNodeDatas.Clear();
             dialogueContainerSO.EventNodeDatas.Clear();
             dialogueContainerSO.StatCheckNodeDatas.Clear();
             dialogueContainerSO.ItemCheckNodeDatas.Clear();
             dialogueContainerSO.EndNodeDatas.Clear();
             dialogueContainerSO.StartNodeDatas.Clear();
-
+            
+            // Each node is saved to different list
             nodes.ForEach(node =>
             {
                 switch (node)
@@ -94,6 +106,7 @@ namespace SDS.DialogueSystem.SaveLoad
             });
         }
 
+        // Saving dialogue node
         private DialogueNodeData SaveNodeData(DialogueNode node)
         {
             DialogueNodeData dialogueNodeData = new DialogueNodeData
@@ -112,19 +125,22 @@ namespace SDS.DialogueSystem.SaveLoad
             {
                 nodePort.OutputGuid = string.Empty;
                 nodePort.InputGuid = string.Empty;
+                
                 foreach (Edge edge in edges)
                 {
                     if (edge.output == nodePort.MyPort)
                     {
-                        nodePort.OutputGuid = (edge.output.node as BaseNode).NodeGuid;
+                        // Converting DialogueNode output and input guids to BaseNode for unified loading and saving
+                        nodePort.OutputGuid = (edge.output.node as BaseNode).NodeGuid;    
                         nodePort.InputGuid = (edge.input.node as BaseNode).NodeGuid;
                     }
                 }
             }
-
+            
             return dialogueNodeData;
         }
 
+        // Saving StartNode
         private StartNodeData SaveNodeData(StartNode node)
         {
             StartNodeData nodeData = new StartNodeData()
@@ -136,6 +152,7 @@ namespace SDS.DialogueSystem.SaveLoad
             return nodeData;
         }
 
+        // Saving End Node
         private EndNodeData SaveNodeData(EndNode node)
         {
             EndNodeData nodeData = new EndNodeData()
@@ -148,6 +165,7 @@ namespace SDS.DialogueSystem.SaveLoad
             return nodeData;
         }
 
+        // Saving EventNode
         private EventNodeData SaveNodeData(EventNode node)
         {
             EventNodeData nodeData = new EventNodeData()
@@ -160,13 +178,14 @@ namespace SDS.DialogueSystem.SaveLoad
             return nodeData;
         }
 
+        // Saving ItemCheckNode
         private ItemCheckNodeData SaveNodeData(ItemCheckNode node)
         {
             ItemCheckNodeData nodeData = new ItemCheckNodeData()
             {
                 NodeGuid = node.NodeGuid,
                 Position = node.GetPosition().position,
-                //NodeItem = node.NodeItem,
+                NodeItem = node.NodeItem,
                 ItemCheckType = node.ItemCheckNodeType,
                 ItemCheckValue = int.Parse(node.ItemCheckValue),
             };
@@ -174,6 +193,7 @@ namespace SDS.DialogueSystem.SaveLoad
             return nodeData;
         }
 
+        // Saving StatCheckNode
         private StatCheckNodeData SaveNodeData(StatCheckNode node)
         {
             StatCheckNodeData nodeData = new StatCheckNodeData()
@@ -192,6 +212,7 @@ namespace SDS.DialogueSystem.SaveLoad
 
         #region Load
 
+        // Clearing graph before loading new dialogue
         private void ClearGraph()
         {
             edges.ForEach(edge => graphView.RemoveElement(edge));
@@ -202,29 +223,30 @@ namespace SDS.DialogueSystem.SaveLoad
             }
         }
 
+        // Spawning nodes based on ScriptableObject data
         private void GenerateNodes(DialogueContainerSO dialogueContainer)
         {
-            // Start
+            // StartNode
             foreach (StartNodeData node in dialogueContainer.StartNodeDatas)
             {
                 StartNode tempNode = graphView.CreateStartNode(node.Position);
                 tempNode.NodeGuid = node.NodeGuid;
 
-                graphView.AddElement(tempNode);
+                graphView.AddElement(tempNode); 
             }
 
-            // End Node 
+            // EndNode 
             foreach (EndNodeData node in dialogueContainer.EndNodeDatas)
             {
                 EndNode tempNode = graphView.CreateEndNode(node.Position);
                 tempNode.NodeGuid = node.NodeGuid;
                 tempNode.EndNodeType = node.EndNodeType;
 
-                tempNode.LoadValueInToField();
-                graphView.AddElement(tempNode);
+                tempNode.LoadValueInToField();  // Loading values into node fields
+                graphView.AddElement(tempNode); // Adding node to graph view
             }
 
-            // Event Node
+            // EventNode
             foreach (EventNodeData node in dialogueContainer.EventNodeDatas)
             {
                 EventNode tempNode = graphView.CreateEventNode(node.Position);
@@ -235,7 +257,7 @@ namespace SDS.DialogueSystem.SaveLoad
                 graphView.AddElement(tempNode);
             }
 
-            // Dialogue Node
+            // DialogueNode
             foreach (DialogueNodeData node in dialogueContainer.DialogueNodeDatas)
             {
                 DialogueNode tempNode = graphView.CreateDialogueNode(node.Position);
@@ -244,16 +266,19 @@ namespace SDS.DialogueSystem.SaveLoad
                 tempNode.NpcFaceImage = node.npcSprite;
                 tempNode.PlayerFaceImage = node.playerSprite;
 
+                // Matching language dialogue is set to
                 foreach (LanguageGeneric<string> languageGeneric in node.TextLanguages)
                 {
                     tempNode.Texts.Find(language => language.LanguageType == languageGeneric.LanguageType).LanguageGenericType = languageGeneric.LanguageGenericType;
                 }
-
+            
+                // Matching voice clips language dialogue is set to
                 foreach (LanguageGeneric<AudioClip> languageGeneric in node.AudioClips)
                 {
                     tempNode.AudioClips.Find(language => language.LanguageType == languageGeneric.LanguageType).LanguageGenericType = languageGeneric.LanguageGenericType;
                 }
-
+                
+                // Matching dialogue choice ports 
                 foreach (DialogueNodePort nodePort in node.DialogueNodePorts)
                 {
                     tempNode.AddChoicePort(tempNode, nodePort);
@@ -263,7 +288,7 @@ namespace SDS.DialogueSystem.SaveLoad
                 graphView.AddElement(tempNode);
             }
 
-            //Stat Check Node
+            // StatCheckNode
             foreach (StatCheckNodeData node in dialogueContainer.StatCheckNodeDatas)
             {
                 StatCheckNode tempNode = graphView.CreateStatCheckNode(node.Position);
@@ -275,7 +300,7 @@ namespace SDS.DialogueSystem.SaveLoad
                 graphView.AddElement(tempNode);
             }
 
-            //Item Check Node
+            // ItemCheckNode
             foreach (ItemCheckNodeData node in dialogueContainer.ItemCheckNodeDatas)
             {
                 ItemCheckNode tempNode = graphView.CreateItemCheckNode(node.Position);
@@ -288,9 +313,11 @@ namespace SDS.DialogueSystem.SaveLoad
                 graphView.AddElement(tempNode);
             }
         }
-
+        
+        // Connecting nodes 
         private void ConnectNodes(DialogueContainerSO dialogueContainer)
         {
+            // Looping through every node
             for (int i = 0; i < nodes.Count; i++)
             {
                 List<NodeLinkData> connections = dialogueContainer.NodeLinkDatas.Where(edge => edge.BaseNodeGuid == nodes[i].NodeGuid).ToList();
@@ -302,34 +329,40 @@ namespace SDS.DialogueSystem.SaveLoad
 
                     if ((nodes[i] is DialogueNode) == false)
                     {
+                        // Connecting every nodes (besides DialogueNode) based on their input and output from ScriptableObject
                         LinkNodesTogether(nodes[i].outputContainer[j].Q<Port>(), (Port)targetNode.inputContainer[0]);
                     }
                 }
             }
 
             List<DialogueNode> dialogueNodes = nodes.FindAll(node => node is DialogueNode).Cast<DialogueNode>().ToList();
-
+            
+            // Looping through every DialogueNode
             foreach (DialogueNode dialogueNode in dialogueNodes)
             {
                 foreach (DialogueNodePort nodePort in dialogueNode.DialogueNodePorts)
                 {
                     if (nodePort.InputGuid != string.Empty)
                     {
+                        // Connecting DialogueNodes and every other nodes to DialogueNode choices
                         BaseNode targetNode = nodes.First(Node => Node.NodeGuid == nodePort.InputGuid);
                         LinkNodesTogether(nodePort.MyPort, (Port)targetNode.inputContainer[0]);
                     }
                 }
             }
         }
-
+        
+        // Connecting nodes together
         private void LinkNodesTogether(Port outputPort, Port inputPort)
         {
+            // Creating new node edge
             Edge tempEdge = new Edge()
             {
                 output = outputPort,
                 input = inputPort
             };
-
+            
+            // Connecting input/output edges
             tempEdge.input.Connect(tempEdge);
             tempEdge.output.Connect(tempEdge);
             graphView.Add(tempEdge);

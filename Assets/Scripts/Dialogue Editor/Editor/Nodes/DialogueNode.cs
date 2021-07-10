@@ -9,40 +9,43 @@ using SDS.DialogueSystem.Enums;
 using SDS.DialogueSystem.Editor;
 using UnityEditor.Experimental.GraphView;
 
+// Auxiliary class for creating DialogueNodes
 namespace SDS.DialogueSystem.Nodes
 {
     public class DialogueNode : BaseNode
     {
-        private List<LanguageGeneric<string>> texts = new List<LanguageGeneric<string>>();
-        private List<LanguageGeneric<AudioClip>> audioClips = new List<LanguageGeneric<AudioClip>>();
-        private Sprite npcFaceImage;
-        private Sprite playerFaceImage;
-        private string nameText = "";
+        private List<DialogueNodePort> dialogueNodePorts = new List<DialogueNodePort>();    // All choices in this DialogueNode
+        private List<LanguageGeneric<string>> texts = new List<LanguageGeneric<string>>();  // Text language of this DialogueNode
+        private List<LanguageGeneric<AudioClip>> audioClips = new List<LanguageGeneric<AudioClip>>();   // Voice language of this DialogueNode
+        private Sprite npcFaceImage;    // NPC dialogue image
+        private Sprite playerFaceImage; // Player dialogue image
+        private string nameText = "";   // NPC name
 
-        private List<DialogueNodePort> dialogueNodePorts = new List<DialogueNodePort>();
         public List<LanguageGeneric<string>> Texts { get => texts; set => texts = value; }
         public List<LanguageGeneric<AudioClip>> AudioClips { get => audioClips; set => audioClips = value; }
         public Sprite NpcFaceImage { get => npcFaceImage; set => npcFaceImage = value; }
         public Sprite PlayerFaceImage { get => playerFaceImage; set => playerFaceImage = value; }
         public string NameText { get => nameText; set => nameText = value; }
         public List<DialogueNodePort> DialogueNodePorts { get => dialogueNodePorts; set => dialogueNodePorts = value; }
-
+        
+        // Fields instantiated in this DialogueNode
         private TextField textsField;
         private ObjectField audioClipsField;
         private ObjectField npcImageField;
         private ObjectField playerImageField;
         private TextField nameField;
 
+        // Initializing EventNode with .css
         public DialogueNode()
         {
-            
-        }
-
-        public DialogueNode(Vector2 position, DialogueEditorWindow newEditorWindow, DialogueGraphView newGraphView)
-        {
+            // Adding and loading this node .css from /Resources
             StyleSheet styleSheet = Resources.Load<StyleSheet>("DialogueNodeStyleSheet");
             styleSheets.Add(styleSheet);
-
+        }
+        
+        // Spawning DialogueNode
+        public DialogueNode(Vector2 position, DialogueEditorWindow newEditorWindow, DialogueGraphView newGraphView)
+        {
             editorWindow = newEditorWindow;
             graphView = newGraphView;
 
@@ -51,7 +54,8 @@ namespace SDS.DialogueSystem.Nodes
             nodeGuid = Guid.NewGuid().ToString();
 
             AddInputPort("Input", Port.Capacity.Multi);
-
+            
+            // Adding possible language variations
             foreach (LanguageType language in (LanguageType[])Enum.GetValues(typeof(LanguageType)))
             {
                 texts.Add(new LanguageGeneric<string>
@@ -67,7 +71,7 @@ namespace SDS.DialogueSystem.Nodes
                 });
             }
 
-            //Enemy Face Image
+            //NPC face image
             npcImageField = new ObjectField
             {
                 label = "NPC image: ",
@@ -79,9 +83,9 @@ namespace SDS.DialogueSystem.Nodes
             {
                 npcFaceImage = value.newValue as Sprite;
             });            
-            
-            mainContainer.Add(npcImageField);
-            
+            mainContainer.Add(npcImageField);   
+
+            // Player face image
             playerImageField = new ObjectField
             {
                 label = "Player image: ",
@@ -96,7 +100,7 @@ namespace SDS.DialogueSystem.Nodes
             
             mainContainer.Add(playerImageField);
 
-            // Audio Chilp
+            // Language audio clip
             audioClipsField = new ObjectField()
             {
                 objectType = typeof(AudioClip),
@@ -110,12 +114,13 @@ namespace SDS.DialogueSystem.Nodes
             audioClipsField.SetValueWithoutNotify(audioClips.Find(audioClip => audioClip.LanguageType == editorWindow.LanguageType).LanguageGenericType);
             mainContainer.Add(audioClipsField);
 
-            // Text Name
+            // NPC name label
             Label label_name = new Label("Name");
             label_name.AddToClassList("label_name");
             label_name.AddToClassList("Label");
             mainContainer.Add(label_name);
 
+            // NPC name field
             nameField = new TextField("");
             nameField.RegisterValueChangedCallback(value =>
             {
@@ -125,7 +130,7 @@ namespace SDS.DialogueSystem.Nodes
             nameField.AddToClassList("TextName");
             mainContainer.Add(nameField);
 
-            // Text Box
+            // NPC text field
             Label label_texts = new Label("Text Box");
             label_texts.AddToClassList("label_texts");
             label_texts.AddToClassList("Label");
@@ -141,7 +146,8 @@ namespace SDS.DialogueSystem.Nodes
 
             textsField.AddToClassList("TextBox");
             mainContainer.Add(textsField);
-
+            
+            // Creating new dialogue choices
             Button button = new Button()
             {
                 text = "Add Choice"
@@ -154,6 +160,7 @@ namespace SDS.DialogueSystem.Nodes
             titleButtonContainer.Add(button);
         }
 
+        // Reloading language
         public void ReloadLanguage()
         {
             textsField.RegisterValueChangedCallback(value =>
@@ -178,6 +185,7 @@ namespace SDS.DialogueSystem.Nodes
             }
         }
 
+        // Loading values into DialogueNode fields
         public override void LoadValueInToField()
         {
             textsField.SetValueWithoutNotify(texts.Find(language => language.LanguageType == editorWindow.LanguageType).LanguageGenericType);
@@ -186,7 +194,8 @@ namespace SDS.DialogueSystem.Nodes
             playerImageField.SetValueWithoutNotify(playerFaceImage);
             nameField.SetValueWithoutNotify(nameText);
         }
-
+        
+        // Adding dialogue choice
         public Port AddChoicePort(BaseNode newBaseNode, DialogueNodePort newDialogueNodePort = null)
         {
             Port port = GetPortInstance(Direction.Output);
@@ -196,7 +205,8 @@ namespace SDS.DialogueSystem.Nodes
 
             DialogueNodePort dialogueNodePort = new DialogueNodePort();
             dialogueNodePort.PortGuid = Guid.NewGuid().ToString();
-
+            
+            // Adding this choice to correct language
             foreach (LanguageType language in (LanguageType[])Enum.GetValues(typeof(LanguageType)))
             {
                 dialogueNodePort.TextLanguages.Add(new LanguageGeneric<string>()
@@ -205,7 +215,8 @@ namespace SDS.DialogueSystem.Nodes
                     LanguageGenericType = outputPortName
                 });
             }
-
+            
+            // Adding dialogue ports guids
             if (newDialogueNodePort != null)
             {
                 dialogueNodePort.InputGuid = newDialogueNodePort.InputGuid;
@@ -218,7 +229,7 @@ namespace SDS.DialogueSystem.Nodes
                 }
             }
 
-            // Text for the port
+            // Text for the dialogue choice
             dialogueNodePort.TextField = new TextField();
             dialogueNodePort.TextField.RegisterValueChangedCallback(value =>
             {
@@ -227,7 +238,7 @@ namespace SDS.DialogueSystem.Nodes
             dialogueNodePort.TextField.SetValueWithoutNotify(dialogueNodePort.TextLanguages.Find(language => language.LanguageType == editorWindow.LanguageType).LanguageGenericType);
             port.contentContainer.Add(dialogueNodePort.TextField);
 
-            // Delete button
+            // Delete choice button
             Button deleteButton = new Button(() => DeletePort(newBaseNode, port))
             {
                 text = "X",
@@ -241,21 +252,23 @@ namespace SDS.DialogueSystem.Nodes
 
             newBaseNode.outputContainer.Add(port);
 
-            // Refresh
+            // Refreshing ports
             newBaseNode.RefreshPorts();
             newBaseNode.RefreshExpandedState();
 
             return port;
         }
 
-
+        
+        // Deleting dialogue choice 
         private void DeletePort(BaseNode delNode, Port delPort)
         {
             DialogueNodePort tmp = dialogueNodePorts.Find(port => port.MyPort == delPort);
             dialogueNodePorts.Remove(tmp);
 
             IEnumerable<Edge> portEdge = graphView.edges.ToList().Where(edge => edge.output == delPort);
-
+            
+            // If something was connected - disconnect
             if (portEdge.Any())
             {
                 Edge edge = portEdge.First();
@@ -263,9 +276,9 @@ namespace SDS.DialogueSystem.Nodes
                 edge.output.Disconnect(edge);
                 graphView.RemoveElement(edge);
             }
-
+            
+            // Removing ports from node
             delNode.outputContainer.Remove(delPort);
-
             delNode.RefreshPorts();
             delNode.RefreshExpandedState();
         }

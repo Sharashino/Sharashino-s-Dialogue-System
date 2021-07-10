@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 
-namespace SDS.DialogueEditor
+// Simple movement script made only to see how interaction works
+namespace SDS.Movement
 {
     public class PlayerMovement : MonoBehaviour
     {

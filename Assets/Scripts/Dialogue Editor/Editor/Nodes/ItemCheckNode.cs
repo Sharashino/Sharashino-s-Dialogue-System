@@ -7,14 +7,16 @@ using SDS.DialogueSystem.Enums;
 using SDS.DialogueSystem.Editor;
 using UnityEditor.Experimental.GraphView;
 
+// Auxiliary class for creating DialogueNodes
 namespace SDS.DialogueSystem.Nodes
 {
     public class ItemCheckNode : BaseNode
     {
-        private Item nodeItem;
-        private ItemCheckNodeType itemCheckType;
-        private string itemCheckValue;
+        private Item nodeItem;  // Reference to Item in this ItemCheckNode
+        private ItemCheckNodeType itemCheckType;    // ItemCheck type (Give Item | Get Item)
+        private string itemCheckValue;  //  How many items should player Give/Get
 
+        // Fields instantiated in this ItemCheckNode
         private EnumField itemCheckField;
         private ObjectField itemField;
         private TextField itemCheckValueField;
@@ -23,16 +25,17 @@ namespace SDS.DialogueSystem.Nodes
         public string ItemCheckValue { get => itemCheckValue; set => itemCheckValue = value; }
         public ItemCheckNodeType ItemCheckNodeType { get => itemCheckType; set => itemCheckType = value; }
 
+        // Initializing ItemCheckNode with .css
         public ItemCheckNode()
         {
-            
-        }
-
-        public ItemCheckNode(Vector2 position, DialogueEditorWindow newEditorWindow, DialogueGraphView newGraphView)
-        {
+            // Adding and loading this node .css from /Resources
             StyleSheet styleSheet = Resources.Load<StyleSheet>("ItemNodeStyleSheet");
             styleSheets.Add(styleSheet);
+        }
 
+        // Spawning ItemCheckNode
+        public ItemCheckNode(Vector2 position, DialogueEditorWindow newEditorWindow, DialogueGraphView newGraphView)
+        {
             editorWindow = newEditorWindow;
             graphView = newGraphView;
 
@@ -42,7 +45,8 @@ namespace SDS.DialogueSystem.Nodes
 
             AddInputPort("Input", Port.Capacity.Multi);
             AddOutputPort("Output", Port.Capacity.Single);
-
+            
+            // ItemCheck type field
             itemCheckField = new EnumField()
             {
                 value = itemCheckType
@@ -57,7 +61,8 @@ namespace SDS.DialogueSystem.Nodes
             itemCheckField.SetValueWithoutNotify(itemCheckType);
 
             mainContainer.Add(itemCheckField);
-
+            
+            // ItemCheck value field
             itemCheckValueField = new TextField()
             {
                 label = "Item count"
@@ -70,7 +75,7 @@ namespace SDS.DialogueSystem.Nodes
             itemCheckValueField.SetValueWithoutNotify(itemCheckValue);
             mainContainer.Add(itemCheckValueField);
             
-            
+            // ItemCheck item field
             itemField = new ObjectField()
             {
                 objectType = typeof(Item),
@@ -88,7 +93,8 @@ namespace SDS.DialogueSystem.Nodes
             
             mainContainer.Add(itemField);
         }
-
+        
+        // Saving values into ItemCheckNode fields
         public override void LoadValueInToField()
         {
             itemCheckValueField.SetValueWithoutNotify(itemCheckValue);
