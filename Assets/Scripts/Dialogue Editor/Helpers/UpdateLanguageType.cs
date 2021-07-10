@@ -3,10 +3,12 @@ using SDS.DialogueSystem.SO;
 using SDS.DialogueSystem.Enums;
 using System.Collections.Generic;
 
+// Class used to update game language
 namespace SDS.DialogueSystem.Actions
 {
     public class UpdateLanguageType
     {
+        // Updating dialogue language
         public void UpdateLanguage()
         {
             List<DialogueContainerSO> dialogueContainers = Helper.FindAllObjectFromResources<DialogueContainerSO>();
@@ -25,7 +27,8 @@ namespace SDS.DialogueSystem.Actions
                 }
             }
         }
-
+        
+        // Updating game language
         private List<LanguageGeneric<T>> UpdateLanguageGeneric<T>(List<LanguageGeneric<T>> languageGenerics)
         {
             List<LanguageGeneric<T>> tmp = new List<LanguageGeneric<T>>();

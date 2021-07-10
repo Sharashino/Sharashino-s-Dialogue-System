@@ -3,10 +3,12 @@ using System.Linq;
 using UnityEngine;
 using System.Collections.Generic;
 
+// Simple helper to make reloading languages easier
 namespace SDS.DialogueSystem.Actions
 {
     public static class Helper
     {
+        // Finding and returning object in /Resources folder
         public static List<T> FindAllObjectFromResources<T>()
         {
             List<T> tmp = new List<T>();

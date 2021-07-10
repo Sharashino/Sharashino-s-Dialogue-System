@@ -2,17 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f08387dd-2c09-4607-819b-631da801ad39" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Sharashino's Dialogue System/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Sharashino's Dialogue System/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/xd.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/xd.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dialogue Editor/Editor/Graph View/DialogueEditorWindow.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Dialogue Editor/Editor/Graph View/DialogueEditorWindow.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dialogue Editor/Editor/Graph View/DialogueGraphView.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Dialogue Editor/Editor/Graph View/DialogueGraphView.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dialogue Editor/Editor/Graph View/NodeSearchWindow.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Dialogue Editor/Editor/Graph View/NodeSearchWindow.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dialogue Editor/Editor/Nodes/DialogueNode.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Dialogue Editor/Editor/Nodes/DialogueNode.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dialogue Editor/Editor/Nodes/EndNode.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Dialogue Editor/Editor/Nodes/EndNode.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dialogue Editor/Editor/Nodes/EventNode.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Dialogue Editor/Editor/Nodes/EventNode.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dialogue Editor/Editor/Nodes/ItemCheckNode.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Dialogue Editor/Editor/Nodes/ItemCheckNode.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dialogue Editor/Editor/Nodes/StartNode.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Dialogue Editor/Editor/Nodes/StartNode.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dialogue Editor/Editor/Nodes/StatCheckNode.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Dialogue Editor/Editor/Nodes/StatCheckNode.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Dialogue Editor/Helpers/Helper.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Dialogue Editor/Helpers/Helper.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,6 +33,7 @@
       <option value="$PROJECT_DIR$/Assets/Scripts/Dialogue Editor/Editor/Nodes/StartNode.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Dialogue Editor/Editor/Nodes/StatCheckNode.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Dialogue Editor/Editor/Graph View/NodeSearchWindow.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Dialogue Editor/Helpers/Helper.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1v59JDJ16WfuK4OpioWBIJqVJCf" />
@@ -95,7 +86,7 @@
       <updated>1625841014014</updated>
       <workItem from="1625841024160" duration="557000" />
       <workItem from="1625847407657" duration="2478000" />
-      <workItem from="1625927759189" duration="3833000" />
+      <workItem from="1625927759189" duration="4137000" />
     </task>
     <servers />
   </component>
