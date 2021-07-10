@@ -39,6 +39,25 @@ namespace SDS.DialogueSystem.Editor
             AddSearchWindow();
         }
         
+        // Getting compatible ports node can connect to
+        public override List<Port> GetCompatiblePorts(Port startPort, NodeAdapter nodeAdapter)
+        {
+            List<Port> compatiblePorts = new List<Port>();
+            Port startPortView = startPort;
+
+            ports.ForEach((port) =>
+            {
+                Port portView = port;
+
+                if (startPortView != portView && startPortView.node != portView.node && startPortView.direction != port.direction)
+                {
+                    compatiblePorts.Add(port);
+                }
+            });
+
+            return compatiblePorts;
+        }
+        
         // Adding search window for nodes
         private void AddSearchWindow()
         {
