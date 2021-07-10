@@ -25,17 +25,19 @@ namespace SDS.DialogueSystem.Nodes
         public string ItemCheckValue { get => itemCheckValue; set => itemCheckValue = value; }
         public ItemCheckNodeType ItemCheckNodeType { get => itemCheckType; set => itemCheckType = value; }
 
-        // Initializing ItemCheckNode with .css
+        // Initializing as empty
         public ItemCheckNode()
         {
-            // Adding and loading this node .css from /Resources
-            StyleSheet styleSheet = Resources.Load<StyleSheet>("ItemNodeStyleSheet");
-            styleSheets.Add(styleSheet);
+            
         }
 
         // Spawning ItemCheckNode
         public ItemCheckNode(Vector2 position, DialogueEditorWindow newEditorWindow, DialogueGraphView newGraphView)
         {
+            // Adding and loading this node .css from /Resources
+            StyleSheet styleSheet = Resources.Load<StyleSheet>("ItemNodeStyleSheet");
+            styleSheets.Add(styleSheet);
+            
             editorWindow = newEditorWindow;
             graphView = newGraphView;
 

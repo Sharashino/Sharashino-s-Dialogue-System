@@ -21,17 +21,19 @@ namespace SDS.DialogueSystem.Nodes
         public StatCheckType CheckType { get => statCheckType; set => statCheckType = value; }
         public string StatCheckValue { get => statCheckValue; set => statCheckValue = value; }
 
-        // Initializing StatCheckNode with .css
+        // Initializing as empty
         public StatCheckNode()
         {
-            // Adding and loading this node .css from /Resources
-            StyleSheet styleSheet = Resources.Load<StyleSheet>("StatCheckNodeStyleSheet");
-            styleSheets.Add(styleSheet); 
+            
         }
 
         // Spawning StatCheckNode
         public StatCheckNode(Vector2 position, DialogueEditorWindow newEditorWindow, DialogueGraphView newGraphView)
         {
+            // Adding and loading this node .css from /Resources
+            StyleSheet styleSheet = Resources.Load<StyleSheet>("StatCheckNodeStyleSheet");
+            styleSheets.Add(styleSheet); 
+            
             editorWindow = newEditorWindow;
             graphView = newGraphView;
 

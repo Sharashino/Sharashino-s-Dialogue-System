@@ -1,34 +1,33 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.UIElements;
 using System.Collections.Generic;
 using SDS.DialogueSystem.Nodes;
 using UnityEditor.Experimental.GraphView;
 
-// <summary>
-// Napisane przez sharashino
-// 
-// Skrypty wyszukiwarki nodów w GraphView
-// </summary>
+// Node search engine script in GraphView
 namespace SDS.DialogueSystem.Editor
 {
     public class NodeSearchWindow : ScriptableObject, ISearchWindowProvider
     {
-        private DialogueEditorWindow editorWindow;
-        private DialogueGraphView graphView;
+        private DialogueEditorWindow editorWindow;  // Editor window this search is spawned
+        private DialogueGraphView graphView;    // Graph view window this search is spawned
 
-        private Texture2D pic;
+        private Texture2D pic;  // Texture displayed before node name
 
         public void Configure(DialogueEditorWindow newEditorWindow, DialogueGraphView newGraphView)
         {
             editorWindow = newEditorWindow;
             graphView = newGraphView;
-
+            
+            // Setting this picture before node name, it is transparent, so the names are evenly aligned
             pic = new Texture2D(1, 1);
             pic.SetPixel(0, 0, new Color(0, 0, 0, 0));
             pic.Apply();
         }
 
-
+        
+        // Creating search tree 
         public List<SearchTreeEntry> CreateSearchTree(SearchWindowContext context)
         {
             List<SearchTreeEntry> tree = new List<SearchTreeEntry>
@@ -45,7 +44,8 @@ namespace SDS.DialogueSystem.Editor
 
             return tree;
         }
-
+        
+        // Adding option to search tree 
         private SearchTreeEntry AddNodeSearch(string nodeName, BaseNode baseNode)
         {
             SearchTreeEntry tempEntry = new SearchTreeEntry(new GUIContent(nodeName, pic))
@@ -56,7 +56,8 @@ namespace SDS.DialogueSystem.Editor
 
             return tempEntry;
         }
-
+        
+        //On selecting node in search tree
         public bool OnSelectEntry(SearchTreeEntry searchTreeEntry, SearchWindowContext context)
         {
             Vector2 mousePosition = editorWindow.rootVisualElement.ChangeCoordinatesTo
@@ -68,7 +69,8 @@ namespace SDS.DialogueSystem.Editor
 
             return CheckForNodeType(searchTreeEntry, graphMousePosition);
         }
-
+        
+        // Spawning right node based on selection
         private bool CheckForNodeType(SearchTreeEntry searchTreeEntry, Vector2 pos)
         {
             switch (searchTreeEntry.userData)
@@ -92,7 +94,7 @@ namespace SDS.DialogueSystem.Editor
                     graphView.AddElement(graphView.CreateEndNode(pos));
                     return true;
                 default:
-                    break;
+                    throw new IndexOutOfRangeException();
             }
             return false;
         }

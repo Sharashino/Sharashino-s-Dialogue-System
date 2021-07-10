@@ -8,26 +8,23 @@ using SDS.DialogueSystem.SO;
 using SDS.DialogueSystem.Enums;
 using SDS.DialogueSystem.SaveLoad;
 
-// <summary>
-// Napisane przez sharashino
-// 
-// Skrypt odpowiadający za wyświetlanie okna z edytorem dialogów
-// </summary>
+// Script responsible for displaying editor window with dialogue editor
 namespace SDS.DialogueSystem.Editor
 {
     public class DialogueEditorWindow : EditorWindow
     {
-        private DialogueContainerSO currentDialogueContainer;
-        private DialogueGraphView graphView;
-        private DialogueSaveAndLoad saveAndLoad;
+        private DialogueContainerSO currentDialogueContainer;   // Dialogue that is getting loaded
+        private DialogueGraphView graphView;    // Graph view displayed in editor
+        private DialogueSaveAndLoad saveAndLoad;    // System saving and loading our dialogue
 
-        private LanguageType languageType = LanguageType.Polish;
-        private ToolbarMenu toolbarMenu;
-        private Label nameOfDialougeContainer;
+        private LanguageType languageType = LanguageType.English;    // Dialogue language type
+        private ToolbarMenu toolbarMenu;    // This editor toolbar
+        private Label nameOfDialougeContainer;  // Name of this dialogue
 
         public LanguageType LanguageType { get => languageType; set => languageType = value; }
 
         [OnOpenAsset(1)]
+        // Loading and showing editor window
         public static bool ShowWindow(int instanceId, int line)
         {
             UnityEngine.Object item = EditorUtility.InstanceIDToObject(instanceId);
@@ -45,7 +42,7 @@ namespace SDS.DialogueSystem.Editor
 
         private void OnEnable()
         {
-            ConstructGeaphView();
+            ConstructGraphView();   
             GenerateToolbar();
             Load();
         }
@@ -54,8 +51,9 @@ namespace SDS.DialogueSystem.Editor
         {
             rootVisualElement.Remove(graphView);
         }
-
-        private void ConstructGeaphView()
+        
+        // Spawning graph view based on dialogue we're loading
+        private void ConstructGraphView()
         {
             graphView = new DialogueGraphView(this);
             graphView.StretchToParentSize();
@@ -63,7 +61,8 @@ namespace SDS.DialogueSystem.Editor
 
             saveAndLoad = new DialogueSaveAndLoad(graphView);
         }
-
+        
+        // Generating toolbar
         private void GenerateToolbar()
         {
             StyleSheet styleSheet = Resources.Load<StyleSheet>("GraphViewStyleSheet");
@@ -71,7 +70,7 @@ namespace SDS.DialogueSystem.Editor
 
             Toolbar toolbar = new Toolbar();
 
-            // Save button.
+            // Save button
             Button saveBtn = new Button()
             {
                 text = "Save"
@@ -82,7 +81,7 @@ namespace SDS.DialogueSystem.Editor
             };
             toolbar.Add(saveBtn);
 
-            // Load button.
+            // Load button
             Button loadBtn = new Button()
             {
                 text = "Load"
@@ -93,7 +92,7 @@ namespace SDS.DialogueSystem.Editor
             };
             toolbar.Add(loadBtn);
 
-            // Dropdown menu for languages.
+            // Dropdown menu for languages
             toolbarMenu = new ToolbarMenu();
             foreach (LanguageType language in (LanguageType[])Enum.GetValues(typeof(LanguageType)))
             {
@@ -101,7 +100,7 @@ namespace SDS.DialogueSystem.Editor
             }
             toolbar.Add(toolbarMenu);
 
-            // Name of current DialigueContainer you have open.
+            // Name of current DialogueContainer you have open
             nameOfDialougeContainer = new Label("");
             toolbar.Add(nameOfDialougeContainer);
             nameOfDialougeContainer.AddToClassList("nameOfDialogueContainer");
@@ -109,6 +108,7 @@ namespace SDS.DialogueSystem.Editor
             rootVisualElement.Add(toolbar);
         }
         
+        // Saving our dialogue
         private void Save()
         {
             if (currentDialogueContainer != null)
@@ -117,6 +117,7 @@ namespace SDS.DialogueSystem.Editor
             }
         }
         
+        // Loading dialogue
         private void Load()
         {
             if (currentDialogueContainer != null)
@@ -127,6 +128,7 @@ namespace SDS.DialogueSystem.Editor
             }
         }
         
+        // Dialogue language picker
         private void Language(LanguageType language, ToolbarMenu _toolbarMenu)
         {
             toolbarMenu.text = "Language: " + language.ToString();

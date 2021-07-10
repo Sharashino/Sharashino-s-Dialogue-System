@@ -16,16 +16,18 @@ namespace SDS.DialogueSystem.Nodes
 
         private EnumField enumField; // Enum field instantiated in this EndNode
 
-        // Initializing EndNode with .css
+        // Initializing as empty
         public EndNode()
         {
-            // Adding and loading this node .css from /Resources
-            StyleSheet styleSheet = Resources.Load<StyleSheet>("EndNodeStyleSheet");
-            styleSheets.Add(styleSheet);
+            
         }
 
         public EndNode(Vector2 position, DialogueEditorWindow newEditorWindow, DialogueGraphView newGraphView)
         {
+            // Adding and loading this node .css from /Resources
+            StyleSheet styleSheet = Resources.Load<StyleSheet>("EndNodeStyleSheet");
+            styleSheets.Add(styleSheet);
+            
             editorWindow = newEditorWindow;
             graphView = newGraphView;
 

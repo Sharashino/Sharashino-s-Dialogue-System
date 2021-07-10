@@ -17,17 +17,19 @@ namespace SDS.DialogueSystem.Nodes
 
         private ObjectField objectField; // Fields instantiated in this EventNode
         
-        // Initializing EventNode with .css
+        // Initializing as empty
         public EventNode()
         {
-            // Adding and loading this node .css from /Resources
-            StyleSheet styleSheet = Resources.Load<StyleSheet>("EventNodeStyleSheet");
-            styleSheets.Add(styleSheet);
+            
         }
         
         // Spawning EventNode
         public EventNode(Vector2 position, DialogueEditorWindow newEditorWindow, DialogueGraphView newGraphView)
         {
+            // Adding and loading this node .css from /Resources
+            StyleSheet styleSheet = Resources.Load<StyleSheet>("EventNodeStyleSheet");
+            styleSheets.Add(styleSheet);
+            
             editorWindow = newEditorWindow;
             graphView = newGraphView;
 

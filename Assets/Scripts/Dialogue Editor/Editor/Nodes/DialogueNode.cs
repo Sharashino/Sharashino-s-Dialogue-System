@@ -35,17 +35,19 @@ namespace SDS.DialogueSystem.Nodes
         private ObjectField playerImageField;
         private TextField nameField;
 
-        // Initializing EventNode with .css
+        // Initializing as empty
         public DialogueNode()
         {
-            // Adding and loading this node .css from /Resources
-            StyleSheet styleSheet = Resources.Load<StyleSheet>("DialogueNodeStyleSheet");
-            styleSheets.Add(styleSheet);
+           
         }
         
         // Spawning DialogueNode
         public DialogueNode(Vector2 position, DialogueEditorWindow newEditorWindow, DialogueGraphView newGraphView)
         {
+            // Adding and loading this node .css from /Resources
+            StyleSheet styleSheet = Resources.Load<StyleSheet>("DialogueNodeStyleSheet");
+            styleSheets.Add(styleSheet);
+            
             editorWindow = newEditorWindow;
             graphView = newGraphView;
 
