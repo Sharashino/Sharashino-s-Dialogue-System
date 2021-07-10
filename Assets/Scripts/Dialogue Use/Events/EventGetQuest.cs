@@ -1,11 +1,7 @@
 ﻿using UnityEngine;
 using SDS.DialogueSystem.SO;
 
-/// <summary>
-/// Napisane przez sharashino
-/// 
-/// Event w dialogu odpowiadający za otrzymanie questa
-/// </summary>
+// Simple dialogue event for getting quest
 namespace SDS.DialogueSystem.Events
 {
     [System.Serializable]
@@ -22,7 +18,7 @@ namespace SDS.DialogueSystem.Events
 
         private void GetQuest()
         {
-            Debug.Log("Nowy quest:" +questName);
+            Debug.Log("New quest:" +questName);
         }
     }
 }

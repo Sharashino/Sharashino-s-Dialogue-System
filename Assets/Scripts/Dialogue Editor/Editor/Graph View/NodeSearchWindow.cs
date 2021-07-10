@@ -96,7 +96,6 @@ namespace SDS.DialogueSystem.Editor
                 default:
                     throw new IndexOutOfRangeException();
             }
-            return false;
         }
     }
 }

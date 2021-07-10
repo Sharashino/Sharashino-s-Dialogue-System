@@ -1,11 +1,7 @@
 ﻿using SDS.DialogueSystem.SO;
 using UnityEngine;
 
-/// <summary>
-/// Napisane przez sharashino
-/// 
-/// Event w dialogu odpowiadający za otwarcie sklepu
-/// </summary>
+// Simple dialogue event for entering the shop
 namespace SDS.DialogueSystem.Events
 {
     [System.Serializable]
@@ -20,7 +16,7 @@ namespace SDS.DialogueSystem.Events
 
         private void OpenShop()
         {
-            Debug.Log("We coś kup byczq");
+            Debug.Log("Buy yourself something nice!");
         }
     }
 }

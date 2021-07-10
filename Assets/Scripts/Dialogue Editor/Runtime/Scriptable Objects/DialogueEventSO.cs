@@ -1,18 +1,15 @@
 ﻿using UnityEngine;
 
-/// <summary>
-/// Napisane przez sharashino
-/// 
-/// Bazowy skrypt do tworzenia eventów w dialogach
-/// </summary>
+// Main script for creating events in EventNode
 namespace SDS.DialogueSystem.SO
 {
     [System.Serializable]
     public class DialogueEventSO : ScriptableObject
     {
+        // Overwritable void running event in EventNode 
         public virtual void RunEvent()
         {
-
+        
         }
     }
 }

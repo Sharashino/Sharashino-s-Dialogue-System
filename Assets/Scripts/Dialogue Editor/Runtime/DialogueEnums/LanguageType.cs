@@ -1,4 +1,5 @@
-﻿namespace SDS.DialogueSystem.Enums
+﻿// Possible Language types
+namespace SDS.DialogueSystem.Enums
 {
     public enum LanguageType
     {

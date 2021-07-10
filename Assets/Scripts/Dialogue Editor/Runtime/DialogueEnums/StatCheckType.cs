@@ -1,4 +1,5 @@
-﻿namespace SDS.DialogueSystem.Enums
+﻿// Possible StatCheck Types
+namespace SDS.DialogueSystem.Enums
 {
     public enum StatCheckType
     {

@@ -1,4 +1,5 @@
-﻿namespace SDS.DialogueSystem.Enums
+﻿// Possible EndNode types
+namespace SDS.DialogueSystem.Enums
 {
     public enum EndNodeType
     {

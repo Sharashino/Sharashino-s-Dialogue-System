@@ -1,4 +1,5 @@
-﻿namespace SDS.DialogueSystem.Enums
+﻿// Possible ItemCheckNode types
+namespace SDS.DialogueSystem.Enums
 {
     public enum ItemCheckNodeType
     {

@@ -20954,7 +20954,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d18c7d3ada195cd46a831982f8f1ae86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  language: 0
+  language: 1
 --- !u!4 &1530026150
 Transform:
   m_ObjectHideFlags: 0
@@ -30611,62 +30611,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 8053066758038332288, guid: b50d7eedbc44a554e9d3f5eac24afd28,
+        type: 3}
+      propertyPath: level
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b50d7eedbc44a554e9d3f5eac24afd28, type: 3}
---- !u!1 &7651010379364848506 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7651010378574160471, guid: b50d7eedbc44a554e9d3f5eac24afd28,
-    type: 3}
-  m_PrefabInstance: {fileID: 7651010379364848505}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &7651010379364848507
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7651010379364848506}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 01b28882a2fbe3146ad5f1f6f8a84241, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  experiencePoints: 0
-  level: 0
-  maxHealth: 100
-  health:
-    statName: Health
-    baseValue: 100
-    modifiers: 
-  mana:
-    statName: 
-    baseValue: 0
-    modifiers: 
-  armor:
-    statName: 
-    baseValue: 0
-    modifiers: 
-  damage:
-    statName: 
-    baseValue: 0
-    modifiers: 
-  strength:
-    statName: 
-    baseValue: 0
-    modifiers: 
-  agility:
-    statName: 
-    baseValue: 0
-    modifiers: 
-  intelligence:
-    statName: 
-    baseValue: 0
-    modifiers: 
-  vitality:
-    statName: 
-    baseValue: 0
-    modifiers: 
-  luck:
-    statName: 
-    baseValue: 0
-    modifiers: 

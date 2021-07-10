@@ -1,11 +1,7 @@
 ﻿using UnityEngine;
 using SDS.DialogueSystem.SO;
 
-/// <summary>
-/// Napisane przez sharashino
-/// 
-/// Event w dialogu odpowiadający za walke
-/// </summary>
+// Simple dialogue event for fighting
 namespace jbzdy.DialogueSystem.Events
 {
     [System.Serializable]
@@ -20,7 +16,7 @@ namespace jbzdy.DialogueSystem.Events
 
         private void Fight()
         {
-            Debug.Log("Ale ci wpierdole");
+            Debug.Log("Im gonna beat you up!");
         }
     }
 }

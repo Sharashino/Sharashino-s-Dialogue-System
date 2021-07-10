@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7651010378574160456}
   - component: {fileID: 7651010378574160457}
   - component: {fileID: 7651010378574160470}
+  - component: {fileID: 8053066758038332288}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -78,6 +79,57 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 2
   rotaSpeed: 5
+--- !u!114 &8053066758038332288
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7651010378574160471}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01b28882a2fbe3146ad5f1f6f8a84241, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  experiencePoints: 0
+  level: 0
+  maxHealth: 100
+  health:
+    statName: Health
+    baseValue: 100
+    modifiers: 
+  mana:
+    statName: Mana
+    baseValue: 20
+    modifiers: 
+  armor:
+    statName: Armor
+    baseValue: 4
+    modifiers: 
+  damage:
+    statName: Damage
+    baseValue: 5
+    modifiers: 
+  strength:
+    statName: Strength
+    baseValue: 5
+    modifiers: 
+  agility:
+    statName: Agility
+    baseValue: 2
+    modifiers: 
+  intelligence:
+    statName: Intelligence
+    baseValue: 4
+    modifiers: 
+  vitality:
+    statName: Vitality
+    baseValue: 2
+    modifiers: 
+  luck:
+    statName: Luck
+    baseValue: 10
+    modifiers: 
 --- !u!1001 &7651010380198116112
 PrefabInstance:
   m_ObjectHideFlags: 0
