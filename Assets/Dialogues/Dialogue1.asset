@@ -12,10 +12,291 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99a69ff5ed214494b835d86b8438ac53, type: 3}
   m_Name: Dialogue1
   m_EditorClassIdentifier: 
-  NodeLinkDatas: []
-  DialogueNodeDatas: []
-  EndNodeDatas: []
-  StartNodeDatas: []
-  EventNodeDatas: []
-  StatCheckNodeDatas: []
-  ItemCheckNodeDatas: []
+  NodeLinkDatas:
+  - BaseNodeGuid: 0aaf0ee7-06ef-4f1e-b04a-c2edb55135c5
+    TargetNodeGuid: 29669db9-4450-49bd-a74d-c11442179d40
+  - BaseNodeGuid: 59531b6b-fd20-4233-a365-d67c5125713e
+    TargetNodeGuid: 35f3fdd3-1704-4dd1-9346-19dda8c8a9c2
+  - BaseNodeGuid: 29669db9-4450-49bd-a74d-c11442179d40
+    TargetNodeGuid: fda14fef-6018-47e8-b070-cf900e989d10
+  - BaseNodeGuid: f9742095-3e06-4ec5-8de2-5a20844bf28d
+    TargetNodeGuid: 80ca4538-e77b-4f54-8876-23caabc83042
+  - BaseNodeGuid: 198a4ed9-3fc2-446c-a6ae-632692557046
+    TargetNodeGuid: 82209bcb-6864-4687-a9c9-23e6415fe7e3
+  - BaseNodeGuid: fda14fef-6018-47e8-b070-cf900e989d10
+    TargetNodeGuid: f9742095-3e06-4ec5-8de2-5a20844bf28d
+  - BaseNodeGuid: fda14fef-6018-47e8-b070-cf900e989d10
+    TargetNodeGuid: 5b1ddf72-18b8-41e3-8e8c-f613c861e4b2
+  - BaseNodeGuid: 80ca4538-e77b-4f54-8876-23caabc83042
+    TargetNodeGuid: a93d47c8-33e5-431b-be9f-39eff0bd644a
+  - BaseNodeGuid: 80ca4538-e77b-4f54-8876-23caabc83042
+    TargetNodeGuid: 82209bcb-6864-4687-a9c9-23e6415fe7e3
+  - BaseNodeGuid: 5b1ddf72-18b8-41e3-8e8c-f613c861e4b2
+    TargetNodeGuid: 198a4ed9-3fc2-446c-a6ae-632692557046
+  - BaseNodeGuid: 5b1ddf72-18b8-41e3-8e8c-f613c861e4b2
+    TargetNodeGuid: 7fb77977-e160-472c-a673-04b27c841d71
+  - BaseNodeGuid: 7fb77977-e160-472c-a673-04b27c841d71
+    TargetNodeGuid: 7074bc40-006e-4d90-b7b1-d64092ef6a00
+  - BaseNodeGuid: a93d47c8-33e5-431b-be9f-39eff0bd644a
+    TargetNodeGuid: 59531b6b-fd20-4233-a365-d67c5125713e
+  - BaseNodeGuid: 82209bcb-6864-4687-a9c9-23e6415fe7e3
+    TargetNodeGuid: ec72ea0d-dfa2-417a-8174-977a1d9977da
+  - BaseNodeGuid: 82209bcb-6864-4687-a9c9-23e6415fe7e3
+    TargetNodeGuid: d1adac07-28dc-4d41-b0dd-aea1ddd82341
+  DialogueNodeDatas:
+  - NodeGuid: fda14fef-6018-47e8-b070-cf900e989d10
+    Position: {x: 273, y: 141}
+    DialogueNodePorts:
+    - PortGuid: a62d1baf-fcf3-477f-bb41-62d82fdcce60
+      InputGuid: f9742095-3e06-4ec5-8de2-5a20844bf28d
+      OutputGuid: fda14fef-6018-47e8-b070-cf900e989d10
+      TextLanguages:
+      - LanguageType: 0
+        LanguageGenericType: Do you have a problem?
+      - LanguageType: 1
+        LanguageGenericType: Do you have a problem?
+      - LanguageType: 2
+        LanguageGenericType: Continue
+    - PortGuid: ab377b9e-20c9-4fb2-88a1-626b60d45c12
+      InputGuid: 5b1ddf72-18b8-41e3-8e8c-f613c861e4b2
+      OutputGuid: fda14fef-6018-47e8-b070-cf900e989d10
+      TextLanguages:
+      - LanguageType: 0
+        LanguageGenericType: Hi
+      - LanguageType: 1
+        LanguageGenericType: Hi
+      - LanguageType: 2
+        LanguageGenericType: Continue
+    AudioClips:
+    - LanguageType: 0
+      LanguageGenericType: {fileID: 0}
+    - LanguageType: 1
+      LanguageGenericType: {fileID: 0}
+    - LanguageType: 2
+      LanguageGenericType: {fileID: 0}
+    TextLanguages:
+    - LanguageType: 0
+      LanguageGenericType: 
+    - LanguageType: 1
+      LanguageGenericType: Hi there! I'm Ash
+    - LanguageType: 2
+      LanguageGenericType: 
+    npcSprite: {fileID: 21300000, guid: 38784d9ce374228429accc44482dd958, type: 3}
+    playerSprite: {fileID: 21300000, guid: d885c74cdb52bff40804cbd13b8ac065, type: 3}
+    Name: Ash
+  - NodeGuid: 80ca4538-e77b-4f54-8876-23caabc83042
+    Position: {x: 741, y: -55}
+    DialogueNodePorts:
+    - PortGuid: ee793f05-50b8-4c7a-9107-5e03b2850725
+      InputGuid: a93d47c8-33e5-431b-be9f-39eff0bd644a
+      OutputGuid: 80ca4538-e77b-4f54-8876-23caabc83042
+      TextLanguages:
+      - LanguageType: 0
+        LanguageGenericType: You surley do have a problem!
+      - LanguageType: 1
+        LanguageGenericType: You surley have a problem!
+      - LanguageType: 2
+        LanguageGenericType: Continue
+    - PortGuid: f5f388fa-a8e2-47d5-849b-127d636d7651
+      InputGuid: 82209bcb-6864-4687-a9c9-23e6415fe7e3
+      OutputGuid: 80ca4538-e77b-4f54-8876-23caabc83042
+      TextLanguages:
+      - LanguageType: 0
+        LanguageGenericType: I'm sorry
+      - LanguageType: 1
+        LanguageGenericType: I'm sorry
+      - LanguageType: 2
+        LanguageGenericType: Continue
+    AudioClips:
+    - LanguageType: 0
+      LanguageGenericType: {fileID: 0}
+    - LanguageType: 1
+      LanguageGenericType: {fileID: 0}
+    - LanguageType: 2
+      LanguageGenericType: {fileID: 0}
+    TextLanguages:
+    - LanguageType: 0
+      LanguageGenericType: Why are you so mean? I just said hello...
+    - LanguageType: 1
+      LanguageGenericType: Why are you so mean? I just said hello...
+    - LanguageType: 2
+      LanguageGenericType: 
+    npcSprite: {fileID: 21300000, guid: 38784d9ce374228429accc44482dd958, type: 3}
+    playerSprite: {fileID: 21300000, guid: d885c74cdb52bff40804cbd13b8ac065, type: 3}
+    Name: Ash
+  - NodeGuid: 5b1ddf72-18b8-41e3-8e8c-f613c861e4b2
+    Position: {x: 574, y: 240}
+    DialogueNodePorts:
+    - PortGuid: cdc61356-06b0-4747-ab4a-e9f483ab4c27
+      InputGuid: 198a4ed9-3fc2-446c-a6ae-632692557046
+      OutputGuid: 5b1ddf72-18b8-41e3-8e8c-f613c861e4b2
+      TextLanguages:
+      - LanguageType: 0
+        LanguageGenericType: I don't know, I just spawned
+      - LanguageType: 1
+        LanguageGenericType: I don't know, I just spawned here...
+      - LanguageType: 2
+        LanguageGenericType: Continue
+    - PortGuid: 6466be44-44b2-46cd-8ed2-3a60087904f6
+      InputGuid: 7fb77977-e160-472c-a673-04b27c841d71
+      OutputGuid: 5b1ddf72-18b8-41e3-8e8c-f613c861e4b2
+      TextLanguages:
+      - LanguageType: 0
+        LanguageGenericType: God has sent me
+      - LanguageType: 1
+        LanguageGenericType: God has sent me
+      - LanguageType: 2
+        LanguageGenericType: Continue
+    AudioClips:
+    - LanguageType: 0
+      LanguageGenericType: {fileID: 0}
+    - LanguageType: 1
+      LanguageGenericType: {fileID: 0}
+    - LanguageType: 2
+      LanguageGenericType: {fileID: 0}
+    TextLanguages:
+    - LanguageType: 0
+      LanguageGenericType: How did you get here?
+    - LanguageType: 1
+      LanguageGenericType: How did you get here?
+    - LanguageType: 2
+      LanguageGenericType: 
+    npcSprite: {fileID: 21300000, guid: 38784d9ce374228429accc44482dd958, type: 3}
+    playerSprite: {fileID: 21300000, guid: d885c74cdb52bff40804cbd13b8ac065, type: 3}
+    Name: Ash
+  - NodeGuid: 7fb77977-e160-472c-a673-04b27c841d71
+    Position: {x: 932, y: 497}
+    DialogueNodePorts:
+    - PortGuid: 844994ca-6ead-436d-a21b-ddb18c6c39bd
+      InputGuid: 7074bc40-006e-4d90-b7b1-d64092ef6a00
+      OutputGuid: 7fb77977-e160-472c-a673-04b27c841d71
+      TextLanguages:
+      - LanguageType: 0
+        LanguageGenericType: '[End] Yea...'
+      - LanguageType: 1
+        LanguageGenericType: '[End] Yea...'
+      - LanguageType: 2
+        LanguageGenericType: Continue
+    AudioClips:
+    - LanguageType: 0
+      LanguageGenericType: {fileID: 0}
+    - LanguageType: 1
+      LanguageGenericType: {fileID: 0}
+    - LanguageType: 2
+      LanguageGenericType: {fileID: 0}
+    TextLanguages:
+    - LanguageType: 0
+      LanguageGenericType: Dang, he knew who to send!
+    - LanguageType: 1
+      LanguageGenericType: Damn, he knew who to send!
+    - LanguageType: 2
+      LanguageGenericType: 
+    npcSprite: {fileID: 21300000, guid: 38784d9ce374228429accc44482dd958, type: 3}
+    playerSprite: {fileID: 21300000, guid: d885c74cdb52bff40804cbd13b8ac065, type: 3}
+    Name: Ash
+  - NodeGuid: a93d47c8-33e5-431b-be9f-39eff0bd644a
+    Position: {x: 1128, y: -216}
+    DialogueNodePorts:
+    - PortGuid: 77918c9c-45ae-4cb2-83e5-acbabffb3615
+      InputGuid: 59531b6b-fd20-4233-a365-d67c5125713e
+      OutputGuid: a93d47c8-33e5-431b-be9f-39eff0bd644a
+      TextLanguages:
+      - LanguageType: 0
+        LanguageGenericType: '[Fight] Now you do'
+      - LanguageType: 1
+        LanguageGenericType: '[Fight] Now you do!'
+      - LanguageType: 2
+        LanguageGenericType: Continue
+    AudioClips:
+    - LanguageType: 0
+      LanguageGenericType: {fileID: 0}
+    - LanguageType: 1
+      LanguageGenericType: {fileID: 0}
+    - LanguageType: 2
+      LanguageGenericType: {fileID: 0}
+    TextLanguages:
+    - LanguageType: 0
+      LanguageGenericType: I don't...
+    - LanguageType: 1
+      LanguageGenericType: I don't...
+    - LanguageType: 2
+      LanguageGenericType: 
+    npcSprite: {fileID: 21300000, guid: 38784d9ce374228429accc44482dd958, type: 3}
+    playerSprite: {fileID: 21300000, guid: d885c74cdb52bff40804cbd13b8ac065, type: 3}
+    Name: Ash
+  - NodeGuid: 82209bcb-6864-4687-a9c9-23e6415fe7e3
+    Position: {x: 1171, y: 103}
+    DialogueNodePorts:
+    - PortGuid: f8761d6a-96c5-4dbf-b5ad-b47db7155e72
+      InputGuid: ec72ea0d-dfa2-417a-8174-977a1d9977da
+      OutputGuid: 82209bcb-6864-4687-a9c9-23e6415fe7e3
+      TextLanguages:
+      - LanguageType: 0
+        LanguageGenericType: '[End] Thanks!'
+      - LanguageType: 1
+        LanguageGenericType: '[End] Thanks'
+      - LanguageType: 2
+        LanguageGenericType: Continue
+    - PortGuid: 3fc752bc-5195-4cbc-9a7f-0e118720b604
+      InputGuid: d1adac07-28dc-4d41-b0dd-aea1ddd82341
+      OutputGuid: 82209bcb-6864-4687-a9c9-23e6415fe7e3
+      TextLanguages:
+      - LanguageType: 0
+        LanguageGenericType: '[End] I don''t wan''t it!'
+      - LanguageType: 1
+        LanguageGenericType: '[End] I don''t want it!'
+      - LanguageType: 2
+        LanguageGenericType: Continue
+    AudioClips:
+    - LanguageType: 0
+      LanguageGenericType: {fileID: 0}
+    - LanguageType: 1
+      LanguageGenericType: {fileID: 0}
+    - LanguageType: 2
+      LanguageGenericType: {fileID: 0}
+    TextLanguages:
+    - LanguageType: 0
+      LanguageGenericType: Its dangerous to go alone, take this
+    - LanguageType: 1
+      LanguageGenericType: It's dangerous to go alone, take this!
+    - LanguageType: 2
+      LanguageGenericType: 
+    npcSprite: {fileID: 21300000, guid: 38784d9ce374228429accc44482dd958, type: 3}
+    playerSprite: {fileID: 21300000, guid: d885c74cdb52bff40804cbd13b8ac065, type: 3}
+    Name: Ash
+  EndNodeDatas:
+  - NodeGuid: 35f3fdd3-1704-4dd1-9346-19dda8c8a9c2
+    Position: {x: 1631, y: -222}
+    EndNodeType: 0
+  - NodeGuid: 7074bc40-006e-4d90-b7b1-d64092ef6a00
+    Position: {x: 1215, y: 499}
+    EndNodeType: 0
+  - NodeGuid: ec72ea0d-dfa2-417a-8174-977a1d9977da
+    Position: {x: 1490, y: 103}
+    EndNodeType: 0
+  - NodeGuid: d1adac07-28dc-4d41-b0dd-aea1ddd82341
+    Position: {x: 1458, y: 217}
+    EndNodeType: 0
+  StartNodeDatas:
+  - NodeGuid: 0aaf0ee7-06ef-4f1e-b04a-c2edb55135c5
+    Position: {x: -3, y: 142}
+  EventNodeDatas:
+  - NodeGuid: 59531b6b-fd20-4233-a365-d67c5125713e
+    Position: {x: 1430, y: -221}
+    DialogueEventSO: {fileID: 11400000, guid: 60f1dfcc1ff78134a8da6ffb65e8e026, type: 2}
+  StatCheckNodeDatas:
+  - NodeGuid: 29669db9-4450-49bd-a74d-c11442179d40
+    Position: {x: 95, y: 143}
+    StatCheckType: 6
+    StatCheckValue: 5
+  - NodeGuid: f9742095-3e06-4ec5-8de2-5a20844bf28d
+    Position: {x: 581, y: 38}
+    StatCheckType: 6
+    StatCheckValue: 10
+  ItemCheckNodeDatas:
+  - NodeGuid: 198a4ed9-3fc2-446c-a6ae-632692557046
+    Position: {x: 947, y: 240}
+    ItemCheckType: 0
+    ItemCheckValue: 1
+    NodeItem: {fileID: 6555621649115733491, guid: 17ad221fe6ca100478e8d78e3deb5f7f,
+      type: 3}
