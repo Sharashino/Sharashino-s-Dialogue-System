@@ -13,6 +13,10 @@ MonoBehaviour:
   m_Name: Dialogue1
   m_EditorClassIdentifier: 
   NodeLinkDatas:
+  - BaseNodeGuid: 386c8bc5-0f58-430d-81f7-c15ed4e6be26
+    TargetNodeGuid: ae2294a8-9982-4859-a2e8-32b6df0c237a
+  - BaseNodeGuid: ae2294a8-9982-4859-a2e8-32b6df0c237a
+    TargetNodeGuid: 2b5030c0-6dcd-4832-8c87-f1db945edc39
   - BaseNodeGuid: 0aaf0ee7-06ef-4f1e-b04a-c2edb55135c5
     TargetNodeGuid: 29669db9-4450-49bd-a74d-c11442179d40
   - BaseNodeGuid: 59531b6b-fd20-4233-a365-d67c5125713e
@@ -43,6 +47,14 @@ MonoBehaviour:
     TargetNodeGuid: ec72ea0d-dfa2-417a-8174-977a1d9977da
   - BaseNodeGuid: 82209bcb-6864-4687-a9c9-23e6415fe7e3
     TargetNodeGuid: d1adac07-28dc-4d41-b0dd-aea1ddd82341
+  - BaseNodeGuid: 7f8c31aa-209b-4d3c-bb69-072cf680ffe7
+    TargetNodeGuid: 422e2e91-80fb-4ced-8e4a-c4f2a3a90ce5
+  - BaseNodeGuid: 7f8c31aa-209b-4d3c-bb69-072cf680ffe7
+    TargetNodeGuid: 422e2e91-80fb-4ced-8e4a-c4f2a3a90ce5
+  - BaseNodeGuid: 91f8edd1-4526-4828-aa3f-e27af98e40f3
+    TargetNodeGuid: 309e38e5-afb1-452b-bc0c-21cc37da70f1
+  - BaseNodeGuid: 309e38e5-afb1-452b-bc0c-21cc37da70f1
+    TargetNodeGuid: 7f8c31aa-209b-4d3c-bb69-072cf680ffe7
   DialogueNodeDatas:
   - NodeGuid: fda14fef-6018-47e8-b070-cf900e989d10
     Position: {x: 273, y: 141}
@@ -264,6 +276,46 @@ MonoBehaviour:
     npcSprite: {fileID: 21300000, guid: 38784d9ce374228429accc44482dd958, type: 3}
     playerSprite: {fileID: 21300000, guid: d885c74cdb52bff40804cbd13b8ac065, type: 3}
     Name: Ash
+  - NodeGuid: 7f8c31aa-209b-4d3c-bb69-072cf680ffe7
+    Position: {x: 488, y: -1160}
+    DialogueNodePorts:
+    - PortGuid: 8cf04b79-f036-4a68-b950-ca3137f24023
+      InputGuid: 422e2e91-80fb-4ced-8e4a-c4f2a3a90ce5
+      OutputGuid: 7f8c31aa-209b-4d3c-bb69-072cf680ffe7
+      TextLanguages:
+      - LanguageType: 0
+        LanguageGenericType: Continue
+      - LanguageType: 1
+        LanguageGenericType: Sure
+      - LanguageType: 2
+        LanguageGenericType: Continue
+    - PortGuid: fbd71660-5579-44c8-a20b-4b88b21c9bf1
+      InputGuid: 422e2e91-80fb-4ced-8e4a-c4f2a3a90ce5
+      OutputGuid: 7f8c31aa-209b-4d3c-bb69-072cf680ffe7
+      TextLanguages:
+      - LanguageType: 0
+        LanguageGenericType: Continue
+      - LanguageType: 1
+        LanguageGenericType: No you won't
+      - LanguageType: 2
+        LanguageGenericType: Continue
+    AudioClips:
+    - LanguageType: 0
+      LanguageGenericType: {fileID: 0}
+    - LanguageType: 1
+      LanguageGenericType: {fileID: 0}
+    - LanguageType: 2
+      LanguageGenericType: {fileID: 0}
+    TextLanguages:
+    - LanguageType: 0
+      LanguageGenericType: 
+    - LanguageType: 1
+      LanguageGenericType: I would like to check your Strength!
+    - LanguageType: 2
+      LanguageGenericType: 
+    npcSprite: {fileID: 21300000, guid: 38784d9ce374228429accc44482dd958, type: 3}
+    playerSprite: {fileID: 21300000, guid: d885c74cdb52bff40804cbd13b8ac065, type: 3}
+    Name: Funny NPC Name
   EndNodeDatas:
   - NodeGuid: 35f3fdd3-1704-4dd1-9346-19dda8c8a9c2
     Position: {x: 1631, y: -222}
@@ -277,9 +329,14 @@ MonoBehaviour:
   - NodeGuid: d1adac07-28dc-4d41-b0dd-aea1ddd82341
     Position: {x: 1458, y: 217}
     EndNodeType: 0
+  - NodeGuid: 422e2e91-80fb-4ced-8e4a-c4f2a3a90ce5
+    Position: {x: 864, y: -1157}
+    EndNodeType: 0
   StartNodeDatas:
   - NodeGuid: 0aaf0ee7-06ef-4f1e-b04a-c2edb55135c5
     Position: {x: -3, y: 142}
+  - NodeGuid: 91f8edd1-4526-4828-aa3f-e27af98e40f3
+    Position: {x: 219, y: -1160}
   EventNodeDatas:
   - NodeGuid: 59531b6b-fd20-4233-a365-d67c5125713e
     Position: {x: 1430, y: -221}
@@ -291,6 +348,10 @@ MonoBehaviour:
     StatCheckValue: 5
   - NodeGuid: f9742095-3e06-4ec5-8de2-5a20844bf28d
     Position: {x: 581, y: 38}
+    StatCheckType: 6
+    StatCheckValue: 10
+  - NodeGuid: 309e38e5-afb1-452b-bc0c-21cc37da70f1
+    Position: {x: 325, y: -1160}
     StatCheckType: 6
     StatCheckValue: 10
   ItemCheckNodeDatas:

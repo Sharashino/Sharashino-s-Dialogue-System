@@ -5,7 +5,7 @@ using SIS.Actions.Interaction;
 using SDS.DialogueSystem.Actions;
 using System.Collections.Generic;
 
-// Script used to interact with npcs, it is responsible for holding dialogues and running them in right order
+// Script used to interact with npcs, it is responsible for holding dialogues and running them in the right order
 namespace SDS.NPC.Interaction
 {
     public class NPCInteraction : Interactable

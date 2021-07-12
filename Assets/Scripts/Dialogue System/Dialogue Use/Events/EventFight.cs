@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using SDS.DialogueSystem.SO;
 
-// Simple dialogue event for fighting
+// Dialogue event for fighting
 namespace jbzdy.DialogueSystem.Events
 {
     [System.Serializable]

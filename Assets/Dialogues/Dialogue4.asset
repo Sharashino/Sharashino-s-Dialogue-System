@@ -1,0 +1,106 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99a69ff5ed214494b835d86b8438ac53, type: 3}
+  m_Name: Dialogue4
+  m_EditorClassIdentifier: 
+  NodeLinkDatas:
+  - BaseNodeGuid: 0ea37b8f-123c-46d7-990e-9a8215449252
+    TargetNodeGuid: 71df2adf-3ebc-4180-b64f-88d3bb4b222a
+  - BaseNodeGuid: 71df2adf-3ebc-4180-b64f-88d3bb4b222a
+    TargetNodeGuid: e48ed11d-c9a9-4c64-9be3-f5ebbce8a24d
+  - BaseNodeGuid: 71f18d22-ed3b-4be1-96ea-a2ac2dcdbca5
+    TargetNodeGuid: e265307d-0e6e-4d96-bcfc-aaded6212b5f
+  - BaseNodeGuid: e48ed11d-c9a9-4c64-9be3-f5ebbce8a24d
+    TargetNodeGuid: 71f18d22-ed3b-4be1-96ea-a2ac2dcdbca5
+  - BaseNodeGuid: e265307d-0e6e-4d96-bcfc-aaded6212b5f
+    TargetNodeGuid: d8a0f733-c2fa-46cc-9cf6-825f98f0caf9
+  - BaseNodeGuid: e265307d-0e6e-4d96-bcfc-aaded6212b5f
+    TargetNodeGuid: d8a0f733-c2fa-46cc-9cf6-825f98f0caf9
+  - BaseNodeGuid: e265307d-0e6e-4d96-bcfc-aaded6212b5f
+    TargetNodeGuid: d8a0f733-c2fa-46cc-9cf6-825f98f0caf9
+  DialogueNodeDatas:
+  - NodeGuid: e265307d-0e6e-4d96-bcfc-aaded6212b5f
+    Position: {x: 378, y: 29}
+    DialogueNodePorts:
+    - PortGuid: 122a1682-45f0-4ac1-bd0a-ae6ff7e614ef
+      InputGuid: d8a0f733-c2fa-46cc-9cf6-825f98f0caf9
+      OutputGuid: e265307d-0e6e-4d96-bcfc-aaded6212b5f
+      TextLanguages:
+      - LanguageType: 0
+        LanguageGenericType: Give me an Item!
+      - LanguageType: 1
+        LanguageGenericType: Give me an Item!
+      - LanguageType: 2
+        LanguageGenericType: Continue
+    - PortGuid: ee964f65-8c54-4000-a188-80a14eb359a0
+      InputGuid: d8a0f733-c2fa-46cc-9cf6-825f98f0caf9
+      OutputGuid: e265307d-0e6e-4d96-bcfc-aaded6212b5f
+      TextLanguages:
+      - LanguageType: 0
+        LanguageGenericType: Check my strength!
+      - LanguageType: 1
+        LanguageGenericType: Check my strength!
+      - LanguageType: 2
+        LanguageGenericType: Continue
+    - PortGuid: afacb996-15c3-4242-b6b4-239f02ef637b
+      InputGuid: d8a0f733-c2fa-46cc-9cf6-825f98f0caf9
+      OutputGuid: e265307d-0e6e-4d96-bcfc-aaded6212b5f
+      TextLanguages:
+      - LanguageType: 0
+        LanguageGenericType: Check my Luck!
+      - LanguageType: 1
+        LanguageGenericType: Check my luck!
+      - LanguageType: 2
+        LanguageGenericType: Continue
+    AudioClips:
+    - LanguageType: 0
+      LanguageGenericType: {fileID: 0}
+    - LanguageType: 1
+      LanguageGenericType: {fileID: 0}
+    - LanguageType: 2
+      LanguageGenericType: {fileID: 0}
+    TextLanguages:
+    - LanguageType: 0
+      LanguageGenericType: I would like to check your Strength and Luck or give you
+        an Item!
+    - LanguageType: 1
+      LanguageGenericType: I would like to check your Strength and Luck or give you
+        an Item!
+    - LanguageType: 2
+      LanguageGenericType: 
+    npcSprite: {fileID: 21300000, guid: 38784d9ce374228429accc44482dd958, type: 3}
+    playerSprite: {fileID: 21300000, guid: d885c74cdb52bff40804cbd13b8ac065, type: 3}
+    Name: Funny NPC Name
+  EndNodeDatas:
+  - NodeGuid: d8a0f733-c2fa-46cc-9cf6-825f98f0caf9
+    Position: {x: 806, y: 39}
+    EndNodeType: 0
+  StartNodeDatas:
+  - NodeGuid: 0ea37b8f-123c-46d7-990e-9a8215449252
+    Position: {x: -271, y: 29}
+  EventNodeDatas: []
+  StatCheckNodeDatas:
+  - NodeGuid: 71df2adf-3ebc-4180-b64f-88d3bb4b222a
+    Position: {x: -168, y: 29}
+    StatCheckType: 6
+    StatCheckValue: 10
+  - NodeGuid: 71f18d22-ed3b-4be1-96ea-a2ac2dcdbca5
+    Position: {x: 216, y: 29}
+    StatCheckType: 10
+    StatCheckValue: 5
+  ItemCheckNodeDatas:
+  - NodeGuid: e48ed11d-c9a9-4c64-9be3-f5ebbce8a24d
+    Position: {x: -19, y: 29}
+    ItemCheckType: 0
+    ItemCheckValue: 1
+    NodeItem: {fileID: 5529374909080982116, guid: eeff5af7a219e444eb1dd71a3c2cff78,
+      type: 3}

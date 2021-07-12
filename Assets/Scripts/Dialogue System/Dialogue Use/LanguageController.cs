@@ -2,7 +2,7 @@
 using SDS.DialogueSystem.Enums;
 
 // Script responsible for game language
-// Every dialogue is running language matching this script
+// Every dialogue is running in a language matching this script.
 namespace SDS.DialogueSystem.Actions
 {
     public class LanguageController : MonoBehaviour

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-// Simple movement script made only to see how interaction works
+// Simple movement script
 namespace SDS.Movement
 {
     public class PlayerMovement : MonoBehaviour

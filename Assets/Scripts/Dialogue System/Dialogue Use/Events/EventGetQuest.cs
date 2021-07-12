@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using SDS.DialogueSystem.SO;
 
-// Simple dialogue event for getting quest
+// Dialogue event for getting quest
 namespace SDS.DialogueSystem.Events
 {
     [System.Serializable]

@@ -1,7 +1,7 @@
 ﻿using SDS.DialogueSystem.SO;
 using UnityEngine;
 
-// Simple dialogue event for entering the shop
+// Dialogue event for entering the shop
 namespace SDS.DialogueSystem.Events
 {
     [System.Serializable]

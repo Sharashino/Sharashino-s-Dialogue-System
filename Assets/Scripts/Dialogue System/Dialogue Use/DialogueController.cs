@@ -94,7 +94,7 @@ namespace SDS.DialogueSystem.Actions
             {
                 Debug.Log("You're too weak, improve your skills...");
             };
-
+            
             failGetItemCheck = () =>
             {
                 Debug.Log("You can't get this item! Throwing it on the floor");
@@ -106,6 +106,7 @@ namespace SDS.DialogueSystem.Actions
             };
             
             // If item check nodes are present in this dialogue
+            // Move this if after "if (statCheckNodeDatas.Count > 0)" to change order of processing Checks
             if (itemCheckNodeDatas.Count > 0)
             {
                 for (int i = 0; i < itemCheckNodeDatas.Count; i++)
@@ -139,11 +140,11 @@ namespace SDS.DialogueSystem.Actions
                         if(ValidateItemCheck(itemCheckNodeDatas[i]))
                         {
                             answerButtons[i].onClick.AddListener(unityActions[i]);  // Player passes get item check, gets to the next dialogue sequence
-                            
+
                             if (itemCheckNodeDatas[i].ItemCheckValue > 1)
-                                Debug.Log("You received - " + itemCheckNodeDatas[i].ItemCheckValue + " " + itemCheckNodeDatas[i].NodeItem);
+                                Debug.Log("You can receive  - " + itemCheckNodeDatas[i].ItemCheckValue + " " + itemCheckNodeDatas[i].NodeItem);
                             else
-                                Debug.Log("You received  - " + itemCheckNodeDatas[i].NodeItem);
+                                Debug.Log("You can receive  - " + itemCheckNodeDatas[i].NodeItem);
                         }
                         else
                         {
@@ -160,9 +161,9 @@ namespace SDS.DialogueSystem.Actions
                             answerButtons[i].onClick.AddListener(unityActions[i]);  // Player passes give item check, gets to the next dialogue sequence
                             
                             if (itemCheckNodeDatas[i].ItemCheckValue > 1)
-                                Debug.Log("You returned - " + itemCheckNodeDatas[i].ItemCheckValue + " " + itemCheckNodeDatas[i].NodeItem);
+                                Debug.Log("You can return - " + itemCheckNodeDatas[i].ItemCheckValue + " " + itemCheckNodeDatas[i].NodeItem);
                             else
-                                Debug.Log("You returned - " + itemCheckNodeDatas[i].NodeItem);
+                                Debug.Log("You can return - " + itemCheckNodeDatas[i].NodeItem);
                         }
                         else
                         {
@@ -175,6 +176,7 @@ namespace SDS.DialogueSystem.Actions
             }
             
             // If stat check nodes are present in this dialogue 
+            // Move this if before "if (itemCheckNodeDatas.Count > 0)" to change order of processing Checks
             if (statCheckNodeDatas.Count > 0)
             {
                 for (int i = 0; i < statCheckNodeDatas.Count; i++)
