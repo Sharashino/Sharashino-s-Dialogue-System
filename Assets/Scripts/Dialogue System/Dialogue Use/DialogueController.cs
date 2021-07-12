@@ -75,10 +75,22 @@ namespace SDS.DialogueSystem.Actions
         // Setting player and npc images
         public void SetImage(Sprite playerImage, Sprite npcImage)
         {
-            playerImageGO.SetActive(true);
-            NPCImageGO.SetActive(true);
-            playerFaceImage.sprite = playerImage;
-            NPCFaceImage.sprite = npcImage;
+            if (playerImage != null)
+            {
+                playerImageGO.SetActive(true);
+                playerFaceImage.sprite = playerImage;
+
+            }
+            else
+                playerImageGO.SetActive(false);
+
+            if (npcImage != null)
+            {
+                NPCImageGO.SetActive(true);
+                NPCFaceImage.sprite = npcImage;
+            }
+            else
+                NPCImageGO.SetActive(false);
         }
 
         // Filling up buttons to show them in dialogue options
