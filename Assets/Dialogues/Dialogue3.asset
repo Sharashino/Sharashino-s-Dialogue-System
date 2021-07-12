@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99a69ff5ed214494b835d86b8438ac53, type: 3}
+  m_Name: Dialogue3
+  m_EditorClassIdentifier: 
+  NodeLinkDatas:
+  - BaseNodeGuid: 386c8bc5-0f58-430d-81f7-c15ed4e6be26
+    TargetNodeGuid: ae2294a8-9982-4859-a2e8-32b6df0c237a
+  - BaseNodeGuid: ae2294a8-9982-4859-a2e8-32b6df0c237a
+    TargetNodeGuid: 2b5030c0-6dcd-4832-8c87-f1db945edc39
+  DialogueNodeDatas:
+  - NodeGuid: ae2294a8-9982-4859-a2e8-32b6df0c237a
+    Position: {x: 490, y: 174}
+    DialogueNodePorts:
+    - PortGuid: 585ad93e-f002-449a-b196-f5c95e0ee968
+      InputGuid: 2b5030c0-6dcd-4832-8c87-f1db945edc39
+      OutputGuid: ae2294a8-9982-4859-a2e8-32b6df0c237a
+      TextLanguages:
+      - LanguageType: 0
+        LanguageGenericType: Continue
+      - LanguageType: 1
+        LanguageGenericType: '[End] Sorry'
+      - LanguageType: 2
+        LanguageGenericType: Continue
+    AudioClips:
+    - LanguageType: 0
+      LanguageGenericType: {fileID: 0}
+    - LanguageType: 1
+      LanguageGenericType: {fileID: 0}
+    - LanguageType: 2
+      LanguageGenericType: {fileID: 0}
+    TextLanguages:
+    - LanguageType: 0
+      LanguageGenericType: 
+    - LanguageType: 1
+      LanguageGenericType: You are starting to make me angry!
+    - LanguageType: 2
+      LanguageGenericType: 
+    npcSprite: {fileID: 21300000, guid: 38784d9ce374228429accc44482dd958, type: 3}
+    playerSprite: {fileID: 21300000, guid: d885c74cdb52bff40804cbd13b8ac065, type: 3}
+    Name: Ash
+  EndNodeDatas:
+  - NodeGuid: 2b5030c0-6dcd-4832-8c87-f1db945edc39
+    Position: {x: 839, y: 180}
+    EndNodeType: 0
+  StartNodeDatas:
+  - NodeGuid: 386c8bc5-0f58-430d-81f7-c15ed4e6be26
+    Position: {x: 387, y: 178}
+  EventNodeDatas: []
+  StatCheckNodeDatas: []
+  ItemCheckNodeDatas: []
