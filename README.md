@@ -3,7 +3,7 @@
 
 ---
 
-Item system designed for Unity
+Dialogue system designed for Unity
 
 Full tutorial can be found on www.sharashino.dev/sds
 
